@@ -11,6 +11,7 @@
 - stepansnigirev
 - superquest
 - svanstaa
+- thecharlatan
 
 We can add a paragraph describing ourselves under the doc/ subdirectory.
 
