@@ -1,5 +1,6 @@
 # Hackathon "team 3" members
 
+- akhilesharora
 - fjahr
 - gustavorssilva
 - hkjn
@@ -7,6 +8,7 @@
 - michaelfolkson
 - nelsonm
 - stephaniestroka
+- stepansnigirev
 - svanstaa
 
 We can add a paragraph describing ourselves under the doc/ subdirectory.
