@@ -9,6 +9,7 @@
 - nelsonm
 - stephaniestroka
 - stepansnigirev
+- superquest
 - svanstaa
 
 We can add a paragraph describing ourselves under the doc/ subdirectory.
