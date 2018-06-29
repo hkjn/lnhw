@@ -44,3 +44,23 @@ bip32 master key: xprv9s21ZrQH143K4Swn4rdeRhPLPfN1qJtA6yFR5RBTpU2s614zG7ELFMN6YA
 secretstuff.bip32: xprv9wYsM6fW2kCzYkSeu3AFZrJ7bk4Ny3w3L5UaLDKLxLizJcacRNGCVwouqJSNNqoi4DGdA6cf3kFEUDvmSdpCyQu8sYg4x44cpVbUFVpSXkc
 ```
 
+## Node key
+
+Our lightning node has a public key and corresponding private key used for communication between nodes. In particular this key pair is used for data encryption and key negotiation. We don't really care about this one as it is used only for communication and it doesn't control our funds. **We can keep this one on the laptop**.
+
+Here we don't even need an HD wallet, so we just do HKDF but instead of `"bip32 seed"` in the info field we use `"nodeid"` string instead. Result will be our private key, public key is as usual `secret * G`.
+
+Public keys in c-lighning are represented as 64-byte arrays holding `x` and `y` coordinates of the public point in little endian byte order.
+
+Then, if we need to talk to another node, we generate a message, encrypt it with the other node's public key, sign it with our private key and send it. We don't really care how it's done - we can let c-lightning do all this stuff. Signature is a normal `(r,s)` pair in little endian.
+
+### Example
+
+```
+secretstuff.hsm_secret: 1e14cd384691a92120f6702742ca0e06951aeee57e91b5e137526c0a6c0867f4
+node private key: 2e87aea4a343a892927284ff8abcb15908f0285ffe8c172309a13764d8ca14ee
+node public key: 94b66254e97746a8590add3beff096f1b6affd686755663c36c55d26032a36542c9545e36c2ff66e1fdbfaf748a273c036f04113d0d16983140bb99da40edb4c
+
+hash to sign: 17a2807a1ece6c1ec2f2a7c07049f89ec936f32bf31c2f41059f0d6a7e7ebcef
+signature: 5d4550f2b1402585d8c923767d95c25b7ed630229e117b4494b595e427fd20b2255234a8f09551f7935fbc805c401707c8fa92b3cb54f4d7224d631b2b33f97b
+```
