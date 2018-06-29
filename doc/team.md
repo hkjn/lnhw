@@ -4,6 +4,7 @@
 - fjahr
 - gustavorssilva
 - hkjn
+- ifo0
 - kasparetter
 - michaelfolkson
 - nelsonm
