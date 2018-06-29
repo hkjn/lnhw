@@ -8,7 +8,7 @@
 - kasparetter
 - michaelfolkson
 - nelsonm
-- stephaniestroka
+- [stephaniestroka](stephaniestroka.md)
 - stepansnigirev
 - superquest
 - svanstaa
