@@ -51,8 +51,7 @@ void loop() {
     JsonObject &jsonCmd = jsonBuffer.parseObject(buf);
 
     if (!jsonCmd.success()) {
-      Serial.println("invalid JSON:");
-      Serial.println(buf);
+      response(false, "invalid input");
       memset(buf, 0, sizeof(buf));
       return;
     }
