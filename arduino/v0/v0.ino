@@ -71,6 +71,7 @@ void response(bool success, const char* data) {
 }
 
 const char* exp_req_get_hsm_secret = "get_hsm_secret";
+const char* exp_req_ping = "ping";
 
 void loop() {
   // put your main code here, to run repeatedly
@@ -97,6 +98,8 @@ void loop() {
         } else {
           response(false, "user cancelled");
         }
+      } else if (strncmp(request, exp_req_ping, strlen(exp_req_ping) + 1) == 0) {
+          response(true, "pong");
       } else {
         response(false, "invalid request");
       }
