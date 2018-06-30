@@ -6,6 +6,7 @@ import NewChannel from './components/NewChannel';
 import { getInfo, listPeers, listFunds, listPayments, listInvoices } from './services/api.js';
 
 import PlugWallet from './components/PlugWallet.js';
+import PayInvoice from './components/PayInvoice.js';
 
 import './App.css';
 
@@ -15,10 +16,12 @@ class App extends Component {
 
         this.setMainState = this.setMainState.bind(this);
         this.handleToggleNewChannel = this.handleToggleNewChannel.bind(this);
+        this.handleTogglePayInvoice = this.handleTogglePayInvoice.bind(this);
 
         this.state = {
             //  Warning: do not remove this one
             openNewChannel: false,
+            openPayInvoice: false,
 
             info: {},
             peers: {},
@@ -59,11 +62,17 @@ class App extends Component {
         this.setState({ openNewChannel: !this.state.openNewChannel });
     }
 
+    handleTogglePayInvoice() {
+        this.setState({ openPayInvoice: !this.state.openPayInvoice });
+    }
+
+
     render() {
         // FIXME: this flag isn't implemented yet
-        // const connected = true;
+        const connected = true;
+        console.log(this.state);
 
-        const connected = this.state.info.hardwarewallet === 'connected';
+        // const connected = this.state.info.hardwarewallet === 'connected';
 
         return (
             <div className="App">
@@ -71,15 +80,20 @@ class App extends Component {
                 <Homepage
                     network={this.state.network}
                     handleToggleNewChannel={this.handleToggleNewChannel}
+                    handleTogglePayInvoice={this.handleTogglePayInvoice}
                 />
                 <PlugWallet
                     connected={connected}
-                    setMainState={this.setMainState}                />
+                    setMainState={this.setMainState}
+                />
                 <NewChannel
                     openNewChannel={this.state.openNewChannel}
                     handleToggleNewChannel={this.handleToggleNewChannel}
                 />
-
+                <PayInvoice
+                    openPayInvoice={this.state.openPayInvoice}
+                    handleTogglePayInvoice={this.handleTogglePayInvoice}
+                />
             </div>
         );
     }

@@ -21,7 +21,7 @@ class PlugWallet extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fundChannel();
+        fundChannel().then(() => window.location.reload());
     }
 
     render() {
@@ -39,7 +39,7 @@ class PlugWallet extends Component {
                     <div className="form-nc-title">Create a lightning channel</div>
                     <form onSubmit={this.handleSubmit}>
                         <label className="input-label">
-                            Peer address:
+                            User address:
                             <input
                                 type="text"
                                 value={this.state.address}

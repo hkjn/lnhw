@@ -19,6 +19,12 @@ class Homepage extends Component {
                         My bitcoin address
                     </div>
                     <div
+                        className="pay-invoice-btn"
+                        onClick={() => this.props.handleTogglePayInvoice()}
+                    >
+                        Pay invoice
+                    </div>
+                    <div
                         className="new-channel-btn"
                         onClick={() => this.props.handleToggleNewChannel()}
                     >
