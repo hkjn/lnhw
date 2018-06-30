@@ -53,3 +53,28 @@ PrivateKey derive_node_key(uint8_t * secret, size_t secretSize){
   return PrivateKey(node_secret, true, USE_TESTNET);
 }
 
+void hsm_peer_secret_base(uint8_t * output, size_t outputSize, 
+                          uint8_t * secret, size_t secretSize){
+  char key[] = "peer seed";
+  byte salt = 0;
+  hkdf_sha256(output, outputSize,
+              &salt, 0, 
+              secret, secretSize,
+              key, strlen(key));
+}
+
+void derive_peer_seed(uint8_t * peer_seed, size_t peer_seed_size,
+          uint8_t * peer_seed_base, size_t peer_seed_base_size,
+          PublicKey peer_id, uint64_t channel_id){
+  char info[] = "per-peer seed";
+  uint8_t input[33+6];
+  PublicKey peer_copy = peer_id;
+  peer_copy.compressed = true;
+  peer_copy.sec(input, 33);
+  memcpy(input+33, &channel_id, sizeof(channel_id));
+  hkdf_sha256(peer_seed, peer_seed_size,
+        input, sizeof(input),
+        peer_seed_base, peer_seed_base_size,
+        info, strlen(info));
+}
+
