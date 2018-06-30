@@ -64,7 +64,7 @@ bool userConfirmed(char * text){
 void response(bool success, const char* data) {
   StaticJsonBuffer<200> jsonBuffer;
   JsonObject& reply = jsonBuffer.createObject();
-  reply["success"] = success ? "success" : "failure";
+  reply["status"] = success ? "success" : "failure";
   reply["payload"] = data;
   reply.printTo(Serial);
   Serial.println();
