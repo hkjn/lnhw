@@ -14,6 +14,8 @@ layers:
 
 ## Flow 1: Viewing wallet
 
+![Watch-only flow](watchonly.jpg)
+
 1. GUI starts in "watch-only mode"
   - can view onchain and offchain funds
   - can't route payments in this state
