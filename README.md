@@ -4,9 +4,11 @@ Chainlab 2018 hackathon project for a LN hardware wallet.
 
 ## Architecture
 
-- Desktop app running patched c-lightning
-  - patched to have the `hsm.c` parts, which handle private key material, done on the hw wallet
-- HW wallet running Arduino project
+- UI layer: what's shown to the user, on both hardware wallet and client app
+- Client app
+  - Running on desktop app (and possibly mobile in later stage) running patched c-lightning
+  - c-lightning will be atched to have the `hsm.c` parts, which handle private key material, done on the hw wallet
+- hardware wallet running Arduino project
 
 ## Subtree
 
