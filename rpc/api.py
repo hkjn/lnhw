@@ -6,7 +6,6 @@ app = Flask(__name__)
 blueprint = Blueprint('api', __name__)
 
 
-
 @blueprint.route('/getinfo')
 def getinfo():
     response = rpc.getinfo()
@@ -20,10 +19,8 @@ def listfunds():
     return jsonify(response)
 
 
-@blueprint.route('/pay')
+@blueprint.route('/pay', methods=['POST'])
 def pay():
     bolt11 = request.json['bolt11']
     response = rpc.pay(bolt11)
     return jsonify(response)
-
-
