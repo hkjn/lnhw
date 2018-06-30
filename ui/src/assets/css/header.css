@@ -1,0 +1,97 @@
+/* Header css */
+
+header {
+    width: 100%;
+    background: white;
+    height: 77px;
+    border-bottom: 1px solid #e7e9ea;
+    display: inline-block;
+}
+
+.header-logo{
+    float: left;
+    width: 77px;
+    height: 100%;
+    background-image: url('../img/lg-logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header-main {
+    width: calc(100% - 189px);;
+    height: 100%;
+    float: left;
+    border-left: 1px solid #e7e9ea;
+    border-right: 1px solid #e7e9ea;
+}
+
+.header-balance {
+    float: left;
+    width: 110px;
+    height: 100%;
+}
+
+.balance-container {
+    padding: 22px 30px;
+    text-align: right;
+}
+
+.balance-container span {
+    width: 100%;
+    float: right;
+    opacity: 0.5;
+    font-size: 10px;
+    letter-spacing: 0.1px;
+    color: #323c47;
+}
+
+.home-icon-container {
+    float: left;
+    line-height: 77px;
+    padding-left: 35px;
+    font-size: 19px;
+    color: #323c47;
+}
+
+.home-icon-container img {
+    width: auto;
+    height: 21px;
+    margin-bottom: -3px;
+    padding-right: 11px;
+}
+
+.device-container {
+    padding: 22px;
+    float: right;
+}
+
+.device-icon-container {
+    float: left;
+    width: 100%;
+    text-align: right;
+}
+
+.device-icon-container span {
+    opacity: 0.5;
+    font-size: 10px;
+    letter-spacing: 0.1px;
+    text-align: right;
+    color: #323c47;
+}
+
+.device-icon-container img {
+    margin-right: 7px;
+    margin-bottom: -2px;
+}
+
+.check-connected {
+    font-family: Roboto;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    text-align: right;
+    color: #7ed321;
+}
+
+.not-connected {
+    color: #323c47;
+}

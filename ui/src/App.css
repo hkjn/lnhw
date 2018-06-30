@@ -3,33 +3,3 @@
   background-color: #f4f8f9;
   min-height: 100vh;
 }
-
-
-/* Header css */
-
-header {
-    width: 100%;
-    background: white;
-    height: 77px;
-    border-bottom: 1px solid #e7e9ea;
-    display: inline-block;
-}
-
-.header-logo{
-    float: left;
-    width: 77px;
-    height: 77px;
-    background-image: url('assets/img/lg-logo.png');
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center;
-}
-
-.header-main {
-    width: calc(100% - 77px - 110px);
-    float: left;
-}
-.header-balance {
-    float: left;
-    width: 110px;
-}
