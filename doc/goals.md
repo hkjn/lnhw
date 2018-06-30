@@ -3,6 +3,15 @@
 Below we sketch out a desirable "dream state" of all the stuff we'd like
 to do if we can get to it.
 
+## Layers
+
+To realize the UI flows described below, we can structure the work into several
+layers:
+
+- UI layer: what's shown to the user, on both client and hardware device
+- client layer: what's running on the laptop
+- hardware layer: what's running on the Arduino devices
+
 ## Flow 1: Viewing wallet
 
 1. GUI starts in "watch-only mode"
