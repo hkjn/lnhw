@@ -41,6 +41,9 @@ we should be integrating the work in the different layers to see if we've actual
     yes / no button
 - `client`
   - in "disconnected mode", hangs
+    1. i.e. for c-lightning, instead of reading `hsm_secret` from disk, we block until the serial device appears
+    2. when the device file appears, we try to fetch `hsm_secret` from hardware wallet, which should block here
+       until user has agreeed to pairing
   - in "normal mode", sends `get_hsm_secret()` command to hardware wallet to fetch secret, then
     resumes normal lightningd operation
 - `hardware`
