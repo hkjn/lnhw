@@ -36,7 +36,7 @@ const char request_get_hsm_secret[] = "get_hsm_secret";
 void response(bool success, const char* data) {
   StaticJsonBuffer<200> jsonBuffer;
   JsonObject& reply = jsonBuffer.createObject();
-  reply["success"] = success;
+  reply["success"] = success ? "success" : "failure";
   reply["payload"] = data;
   reply.printTo(Serial);
   Serial.println();
