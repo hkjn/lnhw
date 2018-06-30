@@ -3,18 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header.js';
 import Homepage from './components/Homepage.js';
-import { getPerson } from './services/api.js';
+import { getInfo } from './services/api.js';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            connected: false,
-        };
+        this.state = {};
     }
 
     componentDidMount() {
-        getPerson();
+        getInfo()
+            .then(res => {
+                this.setState(res.data)
+            })
     }
 
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <div className="App">
                 <Header connected={connected} />
                 <Homepage connected={connected} />
+                <p>Connected to Network: {this.state.network}</p>
                 {/* <PlugWallet connected={connected} /> */}
             </div>
         );
