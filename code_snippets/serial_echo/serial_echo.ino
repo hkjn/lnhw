@@ -7,10 +7,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(Serial.available()){
+  if (Serial.available()) {
     Serial.readBytesUntil('\n', buf, sizeof(buf));
-    delay(1000);
-    Serial.println(buf);
+    if(memcmp(buf, "ping", 4) == 0){
+      Serial.println("pong");
+    }else{
+      delay(1000);
+      Serial.println(buf);
+    }
     memset(buf, 0, sizeof(buf));
   }
 }
