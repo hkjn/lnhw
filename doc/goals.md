@@ -21,6 +21,8 @@ we should be integrating the work in the different layers to see if we've actual
 
 ![Watch-only flow](watchonly.jpg)
 
+### Goal state
+
 1. GUI starts in "watch-only mode"
   - can view onchain and offchain funds
   - can't route payments in this state
@@ -30,7 +32,21 @@ we should be integrating the work in the different layers to see if we've actual
   - bonus: hw device asks for password or PIN before syncing
 
 1b. Onchain wallet deposit and withdraw
-  - UI maybe is bonus
+
+### Bite 1
+
+- `ui`
+  - client starts in "disconnected" mode, showing "plug in your hardware wallet" message
+  - hardware wallet detects when it is plugged in, shows "want to pair?" message and
+    yes / no button
+- `client`
+  - in "disconnected mode", hangs
+  - in "normal mode", sends `get_hsm_secret()` command to hardware wallet to fetch secret, then
+    resumes normal lightningd operation
+- `hardware`
+  - listens for commands on serial port
+  - if it receives `get_hsm_secret()` command, displays "want to pair?" message
+  - if users selects "yes", sends the secret over serial port 
 
 ## Flow 2: Payment
 
