@@ -5,7 +5,7 @@
 - gustavorssilva
 - hkjn
 - ifo0
-- kasparetter
+- [kasparetter](kasparetter.md)
 - michaelfolkson
 - nelsonm
 - [stephaniestroka](stephaniestroka.md)
