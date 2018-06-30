@@ -18,7 +18,7 @@ header {
 .header-logo{
     float: left;
     width: 77px;
-    height: 77px;
+    height: 100%;
     background-image: url('assets/img/lg-logo.png');
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -26,10 +26,15 @@ header {
 }
 
 .header-main {
-    width: calc(100% - 77px - 110px);
+    width: calc(100% - 187px);;
+    height: 100%;
     float: left;
+    border-left: 1px solid #e7e9ea;
+    border-right: 1px solid #e7e9ea;
 }
+
 .header-balance {
     float: left;
     width: 110px;
+    height: 100%;
 }

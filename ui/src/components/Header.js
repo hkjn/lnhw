@@ -7,6 +7,7 @@ class Header extends Component {
         return (
             <header>
                 <div className="header-logo" />
+                <div className="header-main" />
                 <div className="header-balance" />
             </header>
         );
