@@ -8,7 +8,7 @@ Adafruit_FeatherOLED oled = Adafruit_FeatherOLED();
 bool confirm = digitalRead(5);
 bool not_confirm = digitalRead(6);
 bool stringComplete = false;
-String input = "";
+String input = " ";
 
 
 void setup() {
