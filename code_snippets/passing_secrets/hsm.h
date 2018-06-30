@@ -11,4 +11,7 @@ void hkdf_sha256(uint8_t * output, size_t outputSize,
             const uint8_t * data, size_t dataSize,
             const char * info, size_t infoSize);
 
+HDPrivateKey derive_bip32_key(uint8_t * secret, size_t secretSize);
+PrivateKey derive_node_key(uint8_t * secret, size_t secretSize);
+
 #endif
