@@ -4,7 +4,8 @@ Here we can store small working or somehow working pieces of code that can be us
 
 Currently available mini-programs:
 
-- [serial.c](serial.c) - a simple program that sends a command line argument to the serial port
+- [serial.c](serial.c) - a simple C program that sends a command line argument to the serial port
+- [bip32_key_derivation.ino](bip32_key_derivation/bip32_key_derivation.ino) - an Arduino sketch that derives the bip32 key from hsm_secret as described in the [docs](../doc/hsmd/readme.md#populate_secretstuff)
 
 More small snippets that may be useful:
 
