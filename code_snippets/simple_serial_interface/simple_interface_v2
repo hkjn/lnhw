@@ -1,0 +1,55 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_FeatherOLED.h>
+
+Adafruit_FeatherOLED oled = Adafruit_FeatherOLED();
+
+bool confirm = digitalRead(5);
+bool not_confirm = digitalRead(6);
+bool stringComplete = false;
+String input = "";
+
+
+void setup() {
+  Serial.begin(9600);
+  input.reserve(200);
+  oled.init();
+  pinMode(5, INPUT);
+  pinMode(6, INPUT);
+
+  while(!Serial){
+    ;
+  }
+  oled.println("Connection made");
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly
+  oled.clearDisplay();
+
+  if(stringComplete == true){
+    oled.println("Would you like to confirm the transaction");
+    
+    if(confirm){
+      oled.clearDisplay();
+      oled.println("Transaction confirmed");
+    }else{
+      oled.clearDisplay();
+      oled.println("Transaction denied");
+    }
+  }
+}
+
+void serialEvent(){
+  while (Serial.available()){
+    char incoming_char = Serial.read();
+    input += incoming_char;
+
+    if (incoming_char == '\n'){
+      stringComplete = true;
+    }
+  }
+}
+
