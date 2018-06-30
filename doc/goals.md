@@ -12,6 +12,11 @@ layers:
 - client layer: what's running on the laptop
 - hardware layer: what's running on the Arduino devices
 
+As the pictures below shows, we're trying the ["hamburger method"](https://gojko.net/2012/01/23/splitting-user-stories-the-hamburger-method/)
+of project planning. The TL;DR is that for each flow, we are trying to separate the work into the ui, client and hardware layers, with
+each "bite" of the hamburger corresponding to a new set of features, building on the last bite. After each bite has been completed,
+we should be integrating the work in the different layers to see if we've actually gotten everything to integrate and work together.
+
 ## Flow 1: Viewing wallet
 
 ![Watch-only flow](watchonly.jpg)
