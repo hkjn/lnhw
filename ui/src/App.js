@@ -3,6 +3,8 @@ import Header from './components/Header.js';
 import Homepage from './components/Homepage.js';
 import NewChannel from './components/NewChannel';
 
+import { getInfo, listPeers, listFunds, listPayments, listInvoices } from './services/api.js';
+
 import PlugWallet from './components/PlugWallet.js';
 
 import './App.css';
@@ -15,22 +17,42 @@ class App extends Component {
         this.handleToggleNewChannel = this.handleToggleNewChannel.bind(this);
 
         this.state = {
-            network: '',
+            //  Warning: do not remove this one
             openNewChannel: false,
+
+            info: {},
+            peers: {},
+            funds: {},
+            payments: {},
+            invoices: {},
         };
     }
 
-    // componentDidMount() {
-    //     getInfo()
-    //         .then(res => {
-    //             this.setState(res.data)
-    //         })
-        // const bolt11 = 'lnbc2500u1pvjluezpp5qqqsyqcyq5rqwzqfqqqsyqcyq5rqwzqfqqqsyqcyq5rqwzqfqypqdq5xysxxatsyp3k7enxv4jsxqzpuaztrnwngzn3kdzw5hydlzf03qdgm2hdq27cqv3agm2awhz5se903vruatfhq77w3ls4evs3ch9zw97j25emudupq63nyw24cg27h2rspfj9srp'
-        // pay(bolt11)
-    // }
+    componentDidMount() {
+        getInfo()
+            .then(res => {
+                this.setState({ info: res.data })
+            })
+        listPeers()
+            .then(res => {
+                this.setState({ peers: res.data.peers })
+            })
+        listFunds()
+            .then(res => {
+                this.setState({ funds: res.data })
+            })
+        listPayments()
+            .then(res => {
+                this.setState({ payments: res.data.payments })
+            })
+        listInvoices()
+            .then(res => {
+                this.setState({ invoices: res.data.invoices })
+            })
+    }
 
     setMainState(state) {
-        this.setState(state);
+        this.setState({ info: state });
     }
 
     handleToggleNewChannel() {
@@ -38,7 +60,11 @@ class App extends Component {
     }
 
     render() {
-        const connected = !!this.state.network;
+        // FIXME: this flag isn't implemented yet
+        // const connected = this.state.info.connected;
+
+        const connected = true;
+
         return (
             <div className="App">
                 <Header connected={connected} />

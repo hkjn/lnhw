@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getInfo } from '../services/api';
+import { fundChannel } from '../services/api';
 
 import '../assets/css/new-channel.css';
 
@@ -21,6 +21,7 @@ class PlugWallet extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        fundChannel();
     }
 
     render() {
