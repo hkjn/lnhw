@@ -23,3 +23,20 @@
     color: #121212;
     border-bottom: 2px solid #0290ff;
 }
+
+.new-channel-btn {
+    float: right;
+    width: 131px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2px;
+    background-color: #4da1ff;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 14px;
+}
+
+.new-channel-btn:hover {
+    cursor: pointer;
+}

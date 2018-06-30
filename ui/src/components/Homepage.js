@@ -18,6 +18,12 @@ class Homepage extends Component {
                     <div className="title-tab">
                         My bitcoin address
                     </div>
+                    <div
+                        className="new-channel-btn"
+                        onClick={() => alert("Work in progress!!")}
+                    >
+                        Open new channel
+                    </div>
                 </div>
                 <Channel />
                 <p>Connected to Network: {this.props.network}</p>

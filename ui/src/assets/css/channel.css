@@ -47,8 +47,8 @@
 .channel-state {
     width: 70px;
     float: left;
-    height: 100%;
-    padding-top: 10px;
+    height: calc(100% - 7px);
+    padding-top: 7px;
 }
 
 .channel-state span {
