@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header.js';
 import Homepage from './components/Homepage.js';
-// import { getInfo, pay } from './services/api.js';
+import NewChannel from './components/NewChannel';
 
 import PlugWallet from './components/PlugWallet.js';
 
@@ -10,10 +10,13 @@ import './App.css';
 class App extends Component {
     constructor(props) {
         super(props);
+
         this.setMainState = this.setMainState.bind(this);
+        this.handleToggleNewChannel = this.handleToggleNewChannel.bind(this);
 
         this.state = {
             network: '',
+            openNewChannel: false,
         };
     }
 
@@ -30,16 +33,27 @@ class App extends Component {
         this.setState(state);
     }
 
+    handleToggleNewChannel() {
+        this.setState({ openNewChannel: !this.state.openNewChannel });
+    }
+
     render() {
         const connected = !!this.state.network;
         return (
             <div className="App">
                 <Header connected={connected} />
-                <Homepage network={this.state.network} />
+                <Homepage
+                    network={this.state.network}
+                    handleToggleNewChannel={this.handleToggleNewChannel}
+                />
                 <PlugWallet
                     connected={connected}
-                    setMainState={this.setMainState}
+                    setMainState={this.setMainState}                />
+                <NewChannel
+                    openNewChannel={this.state.openNewChannel}
+                    handleToggleNewChannel={this.handleToggleNewChannel}
                 />
+
             </div>
         );
     }

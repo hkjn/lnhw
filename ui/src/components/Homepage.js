@@ -20,7 +20,7 @@ class Homepage extends Component {
                     </div>
                     <div
                         className="new-channel-btn"
-                        onClick={() => alert("Work in progress!!")}
+                        onClick={() => this.props.handleToggleNewChannel()}
                     >
                         Open new channel
                     </div>
