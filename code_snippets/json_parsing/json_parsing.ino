@@ -13,6 +13,10 @@ void setup() {
   while(!Serial){
     ; // wait for serial port to open
   }
+  while (!Serial.available()) {
+    ;
+  }
+  Serial.flush();
   
   // loading hsm_secret. 
   // hardcoded for now, should be loaded from SD card or internal memory
@@ -24,6 +28,19 @@ void setup() {
 }
 
 char buf[1000];
+
+const char request_key[] = "request";
+const char request_echo[] = "echo";
+const char request_get_hsm_secret[] = "get_hsm_secret";
+
+void response(bool success, const char* data) {
+  StaticJsonBuffer<200> jsonBuffer;
+  JsonObject& reply = jsonBuffer.createObject();
+  reply["success"] = success;
+  reply["payload"] = data;
+  reply.printTo(Serial);
+  Serial.println();
+}
 
 void loop() {
   // put your main code here, to run repeatedly:
@@ -39,20 +56,21 @@ void loop() {
       memset(buf, 0, sizeof(buf));
       return;
     }
-    if (jsonCmd.containsKey("cmd")) {
-      const char *cmd = jsonCmd["cmd"];
-      if (strncmp(cmd, "echo", strlen("echo")) == 0) {
+    if (jsonCmd.containsKey(request_key)) {
+      const char *cmd = jsonCmd[request_key];
+      if (strncmp(cmd, request_echo, strlen(request_echo)) == 0) {
         const char *msg = jsonCmd["msg"];
-        Serial.println(msg);
-      } else if (strncmp(cmd, "get_secret", strlen("get_secret")) == 0) {
+        response(true, msg);
+      } else if (strncmp(cmd, request_get_hsm_secret, strlen(request_get_hsm_secret)) == 0) {
         char reply[65];
         toHex((const uint8_t*) hsm_secret, 32, reply, 64);
-        Serial.println(reply);
+        reply[64] = '\0';
+        response(true, reply);
       } else {
-        Serial.println("cmd unknown\n");
+        response(false, "request unknown");
       }
     } else {
-      Serial.println("No cmd received\n");
+      response(false, "no request received");
     }
     memset(buf, 0, sizeof(buf));
   }
