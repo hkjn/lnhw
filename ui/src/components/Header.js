@@ -16,12 +16,12 @@ class Header extends Component {
                 <div className="header-logo" />
                 <div className="header-main" >
                     <div className="home-icon-container">
-                        <img src={HomeIcon} />
+                        <img src={HomeIcon} alt="home" />
                         <span>Home</span>
                     </div>
                     <div className="device-container">
                         <div className="device-icon-container">
-                            <img src={DeviceIcon} />
+                            <img src={DeviceIcon} alt="device" />
                             <span>Device</span>
                         </div>
                         <div className={`check-connected ${!connected  ? 'not-connected' : ''}`}>

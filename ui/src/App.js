@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Header from './components/Header.js';
 import Homepage from './components/Homepage.js';
-import { getPerson } from './services/api.js';
+import PlugWallet from './components/PlugWallet.js';
+
+import './App.css';
 
 class App extends Component {
     constructor(props) {
@@ -11,10 +11,14 @@ class App extends Component {
         this.state = {
             connected: false,
         };
+
+        this.setConnected = this.setConnected.bind(this);
     }
 
-    componentDidMount() {
-        getPerson();
+    setConnected(isConnected) {
+        this.setState({
+            connected: isConnected,
+        })
     }
 
     render() {
@@ -23,7 +27,10 @@ class App extends Component {
             <div className="App">
                 <Header connected={connected} />
                 <Homepage connected={connected} />
-                {/* <PlugWallet connected={connected} /> */}
+                <PlugWallet
+                    connected={connected}
+                    setConnected={this.setConnected}
+                />
             </div>
         );
     }
