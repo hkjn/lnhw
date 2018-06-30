@@ -1,0 +1,42 @@
+#homepage-wrapper {
+    padding: 5px 85px;
+}
+
+.title-container {
+    width: 100%;
+    float: left;
+    border-bottom: solid 1px #e8e8e8;
+    margin-bottom: 8px;
+}
+
+.title-tab {
+    padding: 20px 30px;
+    opacity: 0.5;
+    float: left;
+    font-size: 15px;
+    text-align: center;
+    color: #121212;
+}
+
+.selected-title-tab {
+    opacity: 1;
+    color: #121212;
+    border-bottom: 2px solid #0290ff;
+}
+
+.new-channel-btn {
+    float: right;
+    width: 131px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2px;
+    background-color: #4da1ff;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 14px;
+}
+
+.new-channel-btn:hover {
+    cursor: pointer;
+}

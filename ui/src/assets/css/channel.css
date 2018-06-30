@@ -1,0 +1,107 @@
+.channel-wrapper {
+    float: left;
+    width: 100%;
+    background: white;
+    margin: 8px 0;
+    height: 60px;
+    border-radius: 2.4px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.03);
+}
+
+.channel-img {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 15px 12px;
+}
+
+.channel-description {
+    width: calc(100% - 444px);
+    float: left;
+    height: 100%;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.channel-name {
+    margin-top: 15px;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    color: #121212;
+}
+
+.channel-to {
+    font-size: 10px;
+    color: #121212;
+    margin-top: 5px;
+}
+
+.channel-to span {
+    opacity: 0.5;
+    font-family: ProximaNova;
+    font-size: 10px;
+    color: #121212;
+}
+
+.channel-state {
+    width: 70px;
+    float: left;
+    height: calc(100% - 7px);
+    padding-top: 7px;
+}
+
+.channel-state span {
+    width: 100%;
+    opacity: 0.5;
+    font-family: Roboto;
+    font-size: 8px;
+    color: #121212;
+}
+
+.state-btn {
+    width: 55px;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    background-color: #7ed321;
+    margin: auto;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.channel-balance {
+    width: 310px;
+    float: left;
+    height: 100%;
+    text-align: right;
+}
+
+.channel-balance span {
+    width: 19px;
+    opacity: 0.5;
+    font-size: 10px;
+    letter-spacing: 0.1px;
+    color: #323c47;
+    margin-left: 5px;
+}
+
+.balance-btc {
+    float: left;
+    width: calc(100% - 10px);
+    margin-top: 13px;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    color: #4da1ff;
+}
+
+.balance-usd {
+    float: left;
+    width: calc(100% - 10px);
+    font-size: 10px;
+    color: #323c47;
+}

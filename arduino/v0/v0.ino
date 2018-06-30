@@ -62,6 +62,17 @@ bool userConfirmed(char * text){
     }
 }
 
+void response(bool success, const char* data) {
+  StaticJsonBuffer<200> jsonBuffer;
+  JsonObject& reply = jsonBuffer.createObject();
+  reply["success"] = success ? "success" : "failure";
+  reply["payload"] = data;
+  reply.printTo(Serial);
+  Serial.println();
+}
+
+const char* exp_req_get_hsm_secret = "get_hsm_secret";
+
 void loop() {
   // put your main code here, to run repeatedly
   if(Serial.available()){
@@ -71,26 +82,27 @@ void loop() {
     StaticJsonBuffer<1000> jsonBuffer;
     JsonObject &jsonCmd = jsonBuffer.parseObject(buf);
     if (!jsonCmd.success()) {
-      Serial.println("{  \"status\": \"failure\", \"payload\": \"can't parse json\" }");
+      response(false, "failed to parse input");
       memset(buf, 0, sizeof(buf));
       return;
     }
     if (jsonCmd.containsKey("request")) {
       const char *request = jsonCmd["request"];
-      if (strncmp(request, "get_hsm_secret", strlen("get_hsm_secret")) == 0) {
+      if (strncmp(request, exp_req_get_hsm_secret, strlen(exp_req_get_hsm_secret) + 1) == 0) {
         bool v = userConfirmed("Pass HSM secret?");
-        if(v){
-          Serial.print("{  \"status\": \"success\",  \"payload\": \"");
-          toHex(hsm_secret, 32, Serial);
-          Serial.println("\" }");
-        }else{
-          Serial.println("{  \"status\": \"failure\", \"payload\": \"user cancelled\"  }");
+        if (v) {
+          char reply[65];
+          toHex((const uint8_t*) hsm_secret, 32, reply, 64);
+          reply[64] = '\0';
+          response(true, reply);
+        } else {
+          response(false, "user cancelled");
         }
       } else {
-        Serial.println("{  \"status\": \"failure\", \"payload\": \"invalid request\"  }");
+        response(false, "invalid request");
       }
     } else {
-      Serial.println("{  \"status\": \"failure\", \"payload\": \"missing request field\"  }");
+      response(false, "missing request field");
     }
     memset(buf, 0, sizeof(buf));
   }
