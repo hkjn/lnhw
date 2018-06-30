@@ -63,7 +63,7 @@ class App extends Component {
         // FIXME: this flag isn't implemented yet
         // const connected = this.state.info.connected;
 
-        const connected = true;
+        const connected = this.state.hardwarewallet && this.state.hardwarewallet !== 'disconnected';
 
         return (
             <div className="App">
