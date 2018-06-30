@@ -6,15 +6,15 @@ import '../assets/css/plug.css';
 
 class PlugWallet extends Component {
     componentDidMount() {
-        // getInfo().then((response) => this.props.setMainState(response.data));
-        getInfo().then((response) => this.props.setMainState({}));
+        getInfo().then((response) => this.props.setMainState(response.data));
+        // getInfo().then((response) => this.props.setMainState({}));
     }
 
     componentDidUpdate() {
         setTimeout(function() {
             if (!this.props.connected) {
-                // getInfo().then((response) => this.props.setMainState(response.data));
-                getInfo().then((response) => this.props.setMainState({}));
+                getInfo().then((response) => this.props.setMainState(response.data));
+                // getInfo().then((response) => this.props.setMainState({}));
             } else {
                 clearTimeout();
             }
