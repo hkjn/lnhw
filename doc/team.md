@@ -1,6 +1,6 @@
 # Hackathon "team 3" members
 
-- akhilesharora
+- [akhilesharora](akhilesharora.md)
 - fjahr
 - gustavorssilva
 - hkjn
