@@ -1,0 +1,39 @@
+#plug-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+}
+
+#plug-info {
+    width: 486px;
+    height: 181px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2.4px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.03);
+}
+
+#plug-info img {
+    padding: 20px 0 10px 0;
+}
+
+.info-title{
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: #323c47;
+    margin-bottom: 10px;
+}
+
+.info-description{
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    color: #323c47;
+}

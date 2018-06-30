@@ -4,7 +4,7 @@ class Homepage extends Component {
     render() {
         return (
             <div>
-                yo i am {this.props.connected ? ' connected' : 'not connected'}
+                <p>Connected to Network: {this.props.network}</p>
             </div>
         );
     }
