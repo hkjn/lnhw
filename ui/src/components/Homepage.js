@@ -32,7 +32,6 @@ class Homepage extends Component {
                     </div>
                 </div>
                 {peers.map((peer) => {
-                    console.log(peer);
                     let channelsHtml = [];
                     const channels = peer.channels || [];
 

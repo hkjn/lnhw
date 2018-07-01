@@ -3,13 +3,15 @@ import HomeIcon from '../assets/img/home-icon.svg';
 import DeviceIcon from '../assets/img/chip.svg';
 import LnIcon from '../assets/img/shape.svg';
 
+import { convertMSatToObv } from '../services/helper.js';
+
 import '../assets/css/header.css';
 
 
 class Header extends Component {
     render() {
-        //  TODO add balance
-        const balance = this.props.userFunds || "-";
+        const { balance, curr } = convertMSatToObv(this.props.userFunds);
+        const _balance = balance ? Number(balance).toFixed(6) : "-";
         const connected = this.props.connected;
 
         return (
@@ -33,7 +35,7 @@ class Header extends Component {
                 <div className="header-balance" >
                     <div className="balance-container">
                         <span>Balance</span>
-                        <label><img src={LnIcon} alt="ln"/> {balance}</label>
+                        <label><img src={LnIcon} alt="ln"/> {_balance} {curr}</label>
                     </div>
                 </div>
             </header>

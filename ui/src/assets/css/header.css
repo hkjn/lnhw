@@ -18,7 +18,7 @@ header {
 }
 
 .header-main {
-    width: calc(100% - 189px);;
+    width: calc(100% - 229px);;
     height: 100%;
     float: left;
     border-left: 1px solid #e7e9ea;
@@ -27,7 +27,7 @@ header {
 
 .header-balance {
     float: left;
-    width: 110px;
+    width: 150px;
     height: 100%;
 }
 
@@ -44,6 +44,16 @@ header {
     font-size: 10px;
     letter-spacing: 0.1px;
     color: #323c47;
+    float: left;
+    font-size: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+.balance-container label {
+    font-size: 10px;
+    text-align: right;
+    width: 100%;
 }
 
 .home-icon-container {
