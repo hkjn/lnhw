@@ -13,10 +13,14 @@ class Header extends Component {
         const { value, curr } = convertMSatToObv(this.props.userFunds || 0);
         const _balance = value ? value : '-';
         const connected = this.props.connected;
+        const network = this.props.network;
 
         return (
             <header>
                 <div className="header-logo" />
+
+                <span>{network}</span>
+
                 <div className="header-main" >
                     <div className="home-icon-container">
                         <img src={HomeIcon} alt="home" />

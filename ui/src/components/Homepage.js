@@ -76,8 +76,6 @@ class Homepage extends Component {
                         )
                     })}
                 </table>
-
-                <p>Connected to Network: {this.props.network}</p>
             </div>
         );
     }
