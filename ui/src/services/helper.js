@@ -1,6 +1,6 @@
 export function convertMSatToObv(mSat) {
     console.log("msat = " + mSat);
-    let sat = mSat / 10**3;
+    const sat = mSat / 10**3;
     console.log("sat = " + sat);
 
     //  is sat
