@@ -59,7 +59,7 @@ class Homepage extends Component {
                         <th>Unix Timestamp</th>
                         <th>Status</th>
                     </tr>
-                    {return payments.map((payment) => {
+                    {payments.map((payment) => {
                         return (
                             <tr key={payment.id}>
                                 <td>{payment.id}</td>
@@ -78,15 +78,19 @@ class Homepage extends Component {
                         Payments
                     </div>
                 </div>
-                {payments.map((payment) =>
-                    <Payment
-                        key={payment.id}
-                        paymentId={payment.id}
-                        value={payment.msatoshi}
-                        hash={payment.payment_hash}
-                        timestamp={payment.timestamp}
-                        status={payment.status}
-                    />
+                {payments.map((payment) => {
+                    return (
+                        <Payment
+                            key={payment.id}
+                            paymentId={payment.id}
+                            value={payment.msatoshi}
+                            hash={payment.payment_hash}
+                            timestamp={payment.timestamp}
+                            status={payment.status}
+                        />
+                    )
+
+                }
                 )}
             </div>
         );
