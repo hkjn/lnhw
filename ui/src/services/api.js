@@ -12,6 +12,10 @@ export function pay (bolt11) {
     return rpc('pay', { bolt11 })
 }
 
+export function connect (id) {
+    return rpc('connect', { peer_id: id })
+}
+
 export function listPeers () {
     return rpc('listpeers')
 }
