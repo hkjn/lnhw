@@ -57,11 +57,21 @@ header {
 }
 
 .home-icon-container {
+    position: relative;
     float: left;
     line-height: 77px;
     padding-left: 35px;
     font-size: 19px;
     color: #323c47;
+}
+
+.floating-network {
+    position: absolute;
+    right: -5px;
+    top: -12px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #4da1ff;
 }
 
 .home-icon-container img {

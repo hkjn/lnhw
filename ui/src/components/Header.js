@@ -19,12 +19,12 @@ class Header extends Component {
             <header>
                 <div className="header-logo" />
 
-                <span>{network}</span>
 
                 <div className="header-main" >
                     <div className="home-icon-container">
                         <img src={HomeIcon} alt="home" />
                         <span>Home</span>
+                        <span className="floating-network">{network}</span>
                     </div>
                     <div className="device-container">
                         <div className="device-icon-container">

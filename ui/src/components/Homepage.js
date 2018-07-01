@@ -51,6 +51,7 @@ class Homepage extends Component {
 
 
                 })}
+
             {/*<table>
                     <tr>
                         <th>Id</th>
@@ -70,7 +71,7 @@ class Homepage extends Component {
                             </tr>
                         )
                     })}
-                    </table>*/}
+                </table> */}
 
 
                 <div className="title-container">
