@@ -24,7 +24,7 @@ class Header extends Component {
                     <div className="home-icon-container">
                         <img src={HomeIcon} alt="home" />
                         <span>Home</span>
-                        <span className="floating-network">aaa{network}</span>
+                        <span className="floating-network">{network}</span>
                     </div>
                     <div className="device-container">
                         <div className="device-icon-container">
