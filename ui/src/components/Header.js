@@ -10,8 +10,8 @@ import '../assets/css/header.css';
 
 class Header extends Component {
     render() {
-        const { balance, curr } = convertMSatToObv(this.props.userFunds || 0);
-        const _balance = balance ? balance : '-';
+        const { value, curr } = convertMSatToObv(this.props.userFunds || 0);
+        const _balance = value ? value : '-';
         const connected = this.props.connected;
 
         return (

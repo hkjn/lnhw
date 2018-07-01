@@ -7,9 +7,9 @@ import { convertMSatToObv } from '../services/helper.js';
 
 class Channel extends Component {
     render() {
-        const { balance, curr } = convertMSatToObv(this.props.funds || 0);
+        const { value, curr } = convertMSatToObv(this.props.funds || 0);
 
-        const usValue = this.props.funds * 10**11 * 6353.44;
+        const usValue = this.props.funds / 10**11 * 6353.44;
 
         const cState = this.props.channelState.replace('CHANNELD_', '');
 
@@ -32,7 +32,7 @@ class Channel extends Component {
                 </div>
                 <div className="channel-balance">
                     <div className="balance-btc">
-                            {balance || 0}
+                            {value || 0}
                         <span>{curr}</span>
                     </div>
                     <div className="balance-usd">
