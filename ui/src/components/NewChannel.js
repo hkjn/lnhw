@@ -24,19 +24,23 @@ class PlugWallet extends Component {
 
         const _this = this;
 
-        connect(this.state.address).then(() => {
-            setTimeout(function() {
-                const pubKey = _this.state.address.split("@")[0];
-                fundChannel(pubKey, this.state.amount)
-                .then(r => {
-                    if (r.data.status === 'failure') {
-                        alert(r.data.detail)
-                    }
-                    else {
-                        window.location.reload()
-                    }
-                })
-            }.bind(this), 1000);
+        connect(this.state.address).then(r1 => {
+            if (r1.data.status === 'failure') {
+                alert(r1.data.detail)
+            } else {
+                setTimeout(function() {
+                    const pubKey = _this.state.address.split("@")[0];
+                    fundChannel(pubKey, this.state.amount)
+                    .then(r => {
+                        if (r.data.status === 'failure') {
+                            alert(r.data.detail)
+                        }
+                        else {
+                            window.location.reload()
+                        }
+                    })
+                }.bind(this), 1000);
+            }
         })
 
     }

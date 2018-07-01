@@ -11,6 +11,8 @@ def route():
     args = request.json.get('args', {})
     method_name = request.json['method']
     method = getattr(rpc, method_name)
+    print(method_name)
+    print(args)
     if not method:
         raise BadRequest('Method "%s" does not exist')
     try:
