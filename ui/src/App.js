@@ -68,10 +68,10 @@ class App extends Component {
 
 
     render() {
-        // const connected = false;
+        const connected = true;
         console.log(this.state);
 
-        const connected = this.state.info.hardwarewallet === 'connected';
+        // const connected = this.state.info.hardwarewallet === 'connected';
 
         return (
             <div className="App">
