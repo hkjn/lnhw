@@ -56,14 +56,26 @@ class Homepage extends Component {
 
 
                 })}
-
-                {payments.map((payment) => {
-                    return (
-                        <div key={payment.id}>
-                            {payment.payment_hash}
-                        </div>
-                    )
-                })}
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Msatoshi</th>
+                        <th>Destination</th>
+                        <th>Unix Timestamp</th>
+                        <th>Status</th>
+                    </tr>
+                    {payments.map((payment) => {
+                        return (
+                            <tr key={payment.id}>
+                                <td>{payment.id}</td>
+                                <td>{payment.msatoshi}</td>
+                                <td>{payment.payment_hash}</td>
+                                <td>{payment.timestamp}</td>
+                                <td>{payment.status}</td>
+                            </tr>
+                        )
+                    })}
+                </table>
 
                 <p>Connected to Network: {this.props.network}</p>
             </div>
