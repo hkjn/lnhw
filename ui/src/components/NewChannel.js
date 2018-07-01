@@ -39,7 +39,7 @@ class PlugWallet extends Component {
                     <div className="form-nc-title">Create a lightning channel</div>
                     <form onSubmit={this.handleSubmit}>
                         <label className="input-label">
-                            User address:
+                            Node ID:
                             <input
                                 type="text"
                                 value={this.state.address}
