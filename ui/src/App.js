@@ -17,11 +17,11 @@ const calcUserLnFundsBasedOnPeers = (peers = []) => {
 
     pArr.map((peer) => {
         return (peer.channels || []).map((channel) => {
-            funds += channel.msatoshi_total - channel.msatoshi_to_us;
+            funds += channel.msatoshi_to_us;
         })
     })
 
-    return funds;
+    return funds * 0.00000001;
 }
 
 class App extends Component {

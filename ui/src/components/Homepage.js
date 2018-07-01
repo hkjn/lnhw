@@ -42,7 +42,7 @@ class Homepage extends Component {
                                  connected={peer.connected}
                                  peerId={peer.id}
                                  channelId={channel.channel_id}
-                                 funds={channel.msatoshi_total - channel.msatoshi_to_us}
+                                 funds={channel.msatoshi_to_us}
                                  channelState={channel.state}
 
                              />
