@@ -78,7 +78,7 @@ class Homepage extends Component {
                         Payments
                     </div>
                 </div>
-                {payments.map((payment) => {
+                {payments.reverse().map((payment) => {
                     return (
                         <Payment
                             key={payment.id}
