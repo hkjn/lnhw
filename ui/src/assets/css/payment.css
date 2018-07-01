@@ -107,14 +107,10 @@
     color: #323c47;
 }
 
-.CHANNELD_AWAITING_LOCKIN {
-    background-color: yellow;
-}
-
-.OPENINGD {
-    background-color: yellow;
-}
-
-.CHANNELD_NORMAL {
+.complete {
     background-color: #7ed321;
+}
+
+.failed {
+    background-color: red;
 }

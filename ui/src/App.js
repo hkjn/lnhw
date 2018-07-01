@@ -21,7 +21,7 @@ const calcUserLnFundsBasedOnPeers = (peers = []) => {
         })
     })
 
-    return funds * 0.00000001;
+    return funds;
 }
 
 class App extends Component {
