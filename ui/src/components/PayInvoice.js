@@ -20,7 +20,15 @@ class PayInvoice extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        pay(this.state.invoice);
+        pay(this.state.invoice)
+            .then(r => {
+                if (r.data.status === 'failure') {
+                    alert(r.data.detail)
+                }
+                else {
+                    window.location.reload()
+                }
+            })
     }
 
     render() {

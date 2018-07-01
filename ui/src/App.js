@@ -40,7 +40,7 @@ class App extends Component {
             info: {},
             peers: {},
             funds: {},
-            payments: {},
+            payments: [],
             invoices: {},
         };
     }
@@ -98,6 +98,7 @@ class App extends Component {
                 />
                 <Homepage
                     network={this.state.network}
+                    payments={this.state.payments}
                     handleToggleNewChannel={this.handleToggleNewChannel}
                     handleTogglePayInvoice={this.handleTogglePayInvoice}
                     peers={this.state.peers.length ? this.state.peers : []}
