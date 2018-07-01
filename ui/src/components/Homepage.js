@@ -5,7 +5,7 @@ import '../assets/css/homepage.css';
 
 class Homepage extends Component {
     render() {
-
+        const peers = this.props.peers || [];
         return (
             <div id="homepage-wrapper">
                 <div className="title-container">
@@ -31,7 +31,29 @@ class Homepage extends Component {
                         Open new channel
                     </div>
                 </div>
-                <Channel />
+                {peers.map((peer) => {
+                    console.log(peer);
+                    let channelsHtml = [];
+                    const channels = peer.channels.map || [];
+
+                    channels.map((channel) => {
+                         const elem = (
+                             <Channel
+                                 connected={peer.connected}
+                                 peerId={peer.id}
+                                 channelId={channel.channel_id}
+                                 funds={channel.msatoshi_total - channel.msatoshi_to_us}
+
+                             />
+                         )
+
+                         channelsHtml = [...channelsHtml, elem];
+                    })
+
+                    return channelsHtml;
+
+
+                })}
                 <p>Connected to Network: {this.props.network}</p>
             </div>
         );

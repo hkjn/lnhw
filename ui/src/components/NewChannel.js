@@ -21,7 +21,7 @@ class PlugWallet extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fundChannel().then(() => window.location.reload());
+        fundChannel(this.state.address, this.state.amount).then(() => window.location.reload());
     }
 
     render() {

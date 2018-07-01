@@ -5,7 +5,7 @@ import '../assets/css/channel.css';
 
 class Channel extends Component {
     render() {
-        const btcValue = 1;
+        const btcValue = this.props.funds / 0.00000001;
         const usValue = btcValue * 6353.44;
 
         return (
@@ -15,15 +15,15 @@ class Channel extends Component {
                 </div>
                 <div className="channel-description">
                     <div className="channel-name">
-                        1 Scala Chip Frappuccino
+                        {this.props.channelId}
                     </div>
                     <div className="channel-to">
-                        Connected with:<span> 03933884aaf1d6b1108397e5efe5c86bcfe5c86b</span>
+                        Connected with:<span> {this.props.peerId}</span>
                     </div>
                 </div>
                 <div className="channel-state">
                     <span>Current state</span>
-                    <div className="state-btn">normal</div>
+                    <div className="state-btn">{this.props.connected}</div>
                 </div>
                 <div className="channel-balance">
                     <div className="balance-btc">
