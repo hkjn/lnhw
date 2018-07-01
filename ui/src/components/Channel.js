@@ -7,7 +7,7 @@ import { convertMSatToObv } from '../services/helper.js';
 
 class Channel extends Component {
     render() {
-        const { balance, curr} = convertMSatToObv(this.props.funds);
+        const { balance, curr} = convertMSatToObv(this.props.funds || 0);
 
         const usValue = this.props.funds * 10**11 * 6353.44;
 

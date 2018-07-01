@@ -1,5 +1,7 @@
 export function convertMSatToObv(mSat) {
+    console.log("msat = " + mSat);
     let sat = mSat / 10**3;
+    console.log("sat = " + sat);
 
     //  is sat
     if (sat < 1) {
@@ -17,8 +19,11 @@ export function convertMSatToObv(mSat) {
     }
 
     const btc = sat / 10**8;
+    console.log("btc = " + btc);
 
     if (btc < 0.005) {
+        console.log("mBTC = " + btc * 1000);
+
         return {
             value: btc * 1000,
             curr: 'mBTC'
