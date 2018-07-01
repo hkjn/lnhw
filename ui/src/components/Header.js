@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import HomeIcon from '../assets/img/home-icon.svg';
 import DeviceIcon from '../assets/img/chip.svg';
+import LnIcon from '../assets/img/shape.svg';
+
+import { convertMSatToObv } from '../services/helper.js';
 
 import '../assets/css/header.css';
 
 
 class Header extends Component {
     render() {
-        //  TODO add balance
-        const balance = "-";
+        const { value, curr } = convertMSatToObv(this.props.userFunds || 0);
+        const _balance = value ? value : '-';
         const connected = this.props.connected;
+        const network = this.props.network;
 
         return (
             <header>
                 <div className="header-logo" />
+
+
                 <div className="header-main" >
                     <div className="home-icon-container">
                         <img src={HomeIcon} alt="home" />
                         <span>Home</span>
+                        <span className="floating-network">{network}</span>
                     </div>
                     <div className="device-container">
                         <div className="device-icon-container">
@@ -32,7 +39,7 @@ class Header extends Component {
                 <div className="header-balance" >
                     <div className="balance-container">
                         <span>Balance</span>
-                        <label>Ƀ {balance}</label>
+                        <label><img src={LnIcon} alt="ln"/> {_balance} {curr}</label>
                     </div>
                 </div>
             </header>

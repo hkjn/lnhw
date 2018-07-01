@@ -18,7 +18,7 @@ header {
 }
 
 .header-main {
-    width: calc(100% - 189px);;
+    width: calc(100% - 229px);;
     height: 100%;
     float: left;
     border-left: 1px solid #e7e9ea;
@@ -27,13 +27,14 @@ header {
 
 .header-balance {
     float: left;
-    width: 110px;
+    width: 150px;
     height: 100%;
 }
 
 .balance-container {
     padding: 22px 30px;
     text-align: right;
+    color: #323c47;
 }
 
 .balance-container span {
@@ -43,14 +44,34 @@ header {
     font-size: 10px;
     letter-spacing: 0.1px;
     color: #323c47;
+    float: left;
+    font-size: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+.balance-container label {
+    font-size: 10px;
+    text-align: right;
+    width: 100%;
 }
 
 .home-icon-container {
+    position: relative;
     float: left;
     line-height: 77px;
     padding-left: 35px;
     font-size: 19px;
     color: #323c47;
+}
+
+.floating-network {
+    position: absolute;
+    right: -5px;
+    top: -12px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #4da1ff;
 }
 
 .home-icon-container img {

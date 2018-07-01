@@ -3,10 +3,17 @@ import ChannelIcon from '../assets/img/channel-icon.svg';
 
 import '../assets/css/channel.css';
 
+import { convertMSatToObv } from '../services/helper.js';
+
 class Channel extends Component {
     render() {
-        const btcValue = this.props.funds / 0.00000001;
-        const usValue = btcValue * 6353.44;
+        const { value, curr } = convertMSatToObv(this.props.funds || 0);
+
+        const usValue = this.props.funds / 10**11 * 6353.44;
+
+        const _usValue = Number(usValue).toFixed(2)
+
+        const cState = this.props.channelState.replace('CHANNELD_', '');
 
         return (
             <div className="channel-wrapper">
@@ -23,15 +30,15 @@ class Channel extends Component {
                 </div>
                 <div className="channel-state">
                     <span>Current state</span>
-                    <div className="state-btn">{this.props.connected}</div>
+                    <div className={`state-btn ${this.props.channelState}`}>{cState}</div>
                 </div>
                 <div className="channel-balance">
                     <div className="balance-btc">
-                            {btcValue}
-                        <span>BTC</span>
+                            {value || 0}
+                        <span>{curr}</span>
                     </div>
                     <div className="balance-usd">
-                        {usValue}
+                        {_usValue}
                         <span>USD</span>
                     </div>
                 </div>

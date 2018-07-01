@@ -13,8 +13,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 418px;
-    height: 199px;
+    width: 800px;
+    height: 250px;
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.03);
@@ -39,6 +39,15 @@
 .input-label input {
     margin-left: 10px;
     border: 1px solid black;
+}
+
+.address-txtarea {
+    border: 1px solid black;
+    margin-left: 10px;
+}
+
+.span-address {
+    line-height: 40px;
 }
 
 .input-btn {

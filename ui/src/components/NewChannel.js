@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fundChannel } from '../services/api';
+import { fundChannel, connect } from '../services/api';
 
 import '../assets/css/new-channel.css';
 
@@ -21,7 +21,45 @@ class PlugWallet extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fundChannel(this.state.address, this.state.amount).then(() => window.location.reload());
+
+        const _this = this;
+
+        connect(this.state.address).then(r1 => {
+            if (r1.data.status === 'failure') {
+                alert(r1.data.detail)
+            } else {
+                const pubKey = _this.state.address.split("@")[0];
+                fundChannel(pubKey, this.state.amount)
+                    .then(r => {
+                        if (r.data.status === 'failure') {
+                            alert(r.data.detail)
+                        }
+                        else {
+                            window.location.reload()
+                        }
+                    })
+            }
+        })
+
+        // connect(this.state.address).then(r1 => {
+        //     if (r1.data.status === 'failure') {
+        //         alert(r1.data.detail)
+        //     } else {
+        //         setTimeout(function() {
+        //             const pubKey = _this.state.address.split("@")[0];
+        //             fundChannel(pubKey, this.state.amount)
+        //             .then(r => {
+        //                 if (r.data.status === 'failure') {
+        //                     alert(r.data.detail)
+        //                 }
+        //                 else {
+        //                     window.location.reload()
+        //                 }
+        //             })
+        //         }.bind(this), 1000);
+        //     }
+        // })
+
     }
 
     render() {
@@ -39,15 +77,16 @@ class PlugWallet extends Component {
                     <div className="form-nc-title">Create a lightning channel</div>
                     <form onSubmit={this.handleSubmit}>
                         <label className="input-label">
-                            User address:
-                            <input
+                            <span className="span-address">Node Id (publickey@host:port)</span>
+                            <textarea
+                                className="address-txtarea"
                                 type="text"
                                 value={this.state.address}
                                 onChange={(evt) => this.handleChange(evt, 'address')}
                             />
                         </label>
                         <label className="input-label">
-                            Amount (SAT):
+                            Amount (SAT)
                             <input
                                 type="number"
                                 value={this.state.amout}

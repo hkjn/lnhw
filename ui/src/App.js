@@ -10,6 +10,20 @@ import PayInvoice from './components/PayInvoice.js';
 
 import './App.css';
 
+const calcUserLnFundsBasedOnPeers = (peers = []) => {
+    let funds = 0;
+
+    const pArr = peers.length ? peers : [];
+
+    pArr.map((peer) => {
+        return (peer.channels || []).map((channel) => {
+            funds += channel.msatoshi_to_us;
+        })
+    })
+
+    return funds;
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +40,7 @@ class App extends Component {
             info: {},
             peers: {},
             funds: {},
-            payments: {},
+            payments: [],
             invoices: {},
         };
     }
@@ -67,18 +81,24 @@ class App extends Component {
     }
 
 
+
     render() {
-        // FIXME: this flag isn't implemented yet
         const connected = true;
         console.log(this.state);
 
         // const connected = this.state.info.hardwarewallet === 'connected';
 
+        const userFunds = calcUserLnFundsBasedOnPeers(this.state.peers);
+
         return (
             <div className="App">
-                <Header connected={connected} />
+                <Header
+                    connected={connected}
+                    network={this.state.info.network}
+                    userFunds={userFunds}
+                />
                 <Homepage
-                    network={this.state.network}
+                    payments={this.state.payments}
                     handleToggleNewChannel={this.handleToggleNewChannel}
                     handleTogglePayInvoice={this.handleTogglePayInvoice}
                     peers={this.state.peers.length ? this.state.peers : []}
