@@ -88,8 +88,6 @@ class Homepage extends Component {
                         status={payment.status}
                     />
                 )}
-
-                <p>Connected to Network: {this.props.network}</p>
             </div>
         );
     }

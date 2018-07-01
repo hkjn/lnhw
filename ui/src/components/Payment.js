@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChannelIcon from '../assets/img/channel-icon.svg';
+import PaymentIcon from '../assets/img/bitcoin-logo.svg';
 
 import '../assets/css/payment.css';
 

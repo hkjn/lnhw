@@ -94,10 +94,10 @@ class App extends Component {
             <div className="App">
                 <Header
                     connected={connected}
+                    network={this.state.info.network}
                     userFunds={userFunds}
                 />
                 <Homepage
-                    network={this.state.network}
                     payments={this.state.payments}
                     handleToggleNewChannel={this.handleToggleNewChannel}
                     handleTogglePayInvoice={this.handleTogglePayInvoice}
