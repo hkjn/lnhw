@@ -81,6 +81,7 @@ class App extends Component {
                     network={this.state.network}
                     handleToggleNewChannel={this.handleToggleNewChannel}
                     handleTogglePayInvoice={this.handleTogglePayInvoice}
+                    peers={this.state.peers.length ? this.state.peers : []}
                 />
                 <PlugWallet
                     connected={connected}
