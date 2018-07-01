@@ -6,6 +6,7 @@ import '../assets/css/homepage.css';
 class Homepage extends Component {
     render() {
         const peers = this.props.peers || [];
+        const payments = this.props.payments || [];
         return (
             <div id="homepage-wrapper">
                 <div className="title-container">
@@ -55,6 +56,15 @@ class Homepage extends Component {
 
 
                 })}
+
+                {payments.map((payment) => {
+                    return (
+                        <div key={payment.id}>
+                            {payment.payment_hash}
+                        </div>
+                    )
+                })}
+
                 <p>Connected to Network: {this.props.network}</p>
             </div>
         );
