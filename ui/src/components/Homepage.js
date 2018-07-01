@@ -51,7 +51,8 @@ class Homepage extends Component {
 
 
                 })}
-                {/* <table>
+
+            {/*<table>
                     <tr>
                         <th>Id</th>
                         <th>Msatoshi</th>
