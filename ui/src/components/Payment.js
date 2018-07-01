@@ -19,7 +19,7 @@ class Payment extends Component {
                         {this.props.hash}
                     </div>
                     <div className="payment-time">
-                        Datetime:<span> {new Date(this.props.timestamp)}</span>
+                Datetime:<span> {new Date(this.props.timestamp).toTimeString()}</span>
                     </div>
                 </div>
                 <div className="payment-state">
