@@ -83,10 +83,10 @@ class App extends Component {
 
 
     render() {
-        // const connected = true;
-        // console.log(this.state);
+        const connected = true;
+        console.log(this.state);
 
-        const connected = this.state.info.hardwarewallet === 'connected';
+        // const connected = this.state.info.hardwarewallet === 'connected';
 
         const userFunds = calcUserLnFundsBasedOnPeers(this.state.peers);
 
