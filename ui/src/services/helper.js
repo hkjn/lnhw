@@ -13,7 +13,7 @@ export function convertMSatToObv(mSat) {
 
     if (sat < 10**4) {
         return {
-            value: sat,
+            value: Number(sat).toFixed(3),
             curr: 'sat'
         };
     }
@@ -25,13 +25,13 @@ export function convertMSatToObv(mSat) {
         console.log("mBTC = " + btc * 1000);
 
         return {
-            value: btc * 1000,
+            value: Number(btc * 1000).toFixed(4),
             curr: 'mBTC'
         };
     }
 
     return {
-        value: btc,
+        value: Number(btc).toFixed(5),
         curr: 'BTC'
     };
 }

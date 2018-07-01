@@ -11,6 +11,8 @@ class Channel extends Component {
 
         const usValue = this.props.funds / 10**11 * 6353.44;
 
+        const _usValue = Number(usValue).toFixed(2)
+
         const cState = this.props.channelState.replace('CHANNELD_', '');
 
         return (
@@ -36,7 +38,7 @@ class Channel extends Component {
                         <span>{curr}</span>
                     </div>
                     <div className="balance-usd">
-                        {usValue}
+                        {_usValue}
                         <span>USD</span>
                     </div>
                 </div>
