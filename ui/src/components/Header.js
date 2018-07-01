@@ -11,7 +11,7 @@ import '../assets/css/header.css';
 class Header extends Component {
     render() {
         const { balance, curr } = convertMSatToObv(this.props.userFunds || 0);
-        const _balance = balance btc * 1000;
+        const _balance = balance ? balance : '-';
         const connected = this.props.connected;
 
         return (
