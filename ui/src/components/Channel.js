@@ -23,7 +23,7 @@ class Channel extends Component {
                 </div>
                 <div className="channel-state">
                     <span>Current state</span>
-                    <div className=`state-btn ${this.props.channelState}`>{this.props.channelState}</div>
+                    <div className={`state-btn ${this.props.channelState}`}>{this.props.channelState}</div>
                 </div>
                 <div className="channel-balance">
                     <div className="balance-btc">
