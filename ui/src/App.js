@@ -10,6 +10,20 @@ import PayInvoice from './components/PayInvoice.js';
 
 import './App.css';
 
+const calcUserLnFundsBasedOnPeers = (peers = []) => {
+    let funds = 0;
+
+    const pArr = peers.length ? peers : [];
+
+    pArr.map((peer) => {
+        return (peer.channels || []).map((channel) => {
+            funds += channel.msatoshi_total - channel.msatoshi_to_us;
+        })
+    })
+
+    return funds;
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -74,9 +88,14 @@ class App extends Component {
 
         // const connected = this.state.info.hardwarewallet === 'connected';
 
+        const userFunds = calcUserLnFundsBasedOnPeers(this.state.peers);
+
         return (
             <div className="App">
-                <Header connected={connected} />
+                <Header
+                    connected={connected}
+                    userFunds={userFunds}
+                />
                 <Homepage
                     network={this.state.network}
                     handleToggleNewChannel={this.handleToggleNewChannel}

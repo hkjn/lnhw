@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeIcon from '../assets/img/home-icon.svg';
 import DeviceIcon from '../assets/img/chip.svg';
+import LnIcon from '../assets/img/shape.svg';
 
 import '../assets/css/header.css';
 
@@ -8,7 +9,7 @@ import '../assets/css/header.css';
 class Header extends Component {
     render() {
         //  TODO add balance
-        const balance = "-";
+        const balance = this.props.userFunds || "-";
         const connected = this.props.connected;
 
         return (
@@ -32,7 +33,7 @@ class Header extends Component {
                 <div className="header-balance" >
                     <div className="balance-container">
                         <span>Balance</span>
-                        <label>Ƀ {balance}</label>
+                        <label><img src={LnIcon} alt="ln"/> {balance}</label>
                     </div>
                 </div>
             </header>

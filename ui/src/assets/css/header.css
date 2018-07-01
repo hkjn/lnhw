@@ -34,6 +34,7 @@ header {
 .balance-container {
     padding: 22px 30px;
     text-align: right;
+    color: #323c47;
 }
 
 .balance-container span {
