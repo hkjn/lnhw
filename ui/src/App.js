@@ -68,11 +68,10 @@ class App extends Component {
 
 
     render() {
-        // FIXME: this flag isn't implemented yet
-        const connected = true;
+        // const connected = false;
         console.log(this.state);
 
-        // const connected = this.state.info.hardwarewallet === 'connected';
+        const connected = this.state.info.hardwarewallet === 'connected';
 
         return (
             <div className="App">
