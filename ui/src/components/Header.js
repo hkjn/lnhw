@@ -11,7 +11,7 @@ import '../assets/css/header.css';
 class Header extends Component {
     render() {
         const { balance, curr } = convertMSatToObv(this.props.userFunds);
-        const _balance = balance ? Number(balance).toFixed(6) : "-";
+        const _balance = Number(balance).toFixed(6);
         const connected = this.props.connected;
 
         return (

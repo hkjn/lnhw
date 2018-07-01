@@ -39,6 +39,7 @@ class Homepage extends Component {
                     channels.map((channel) => {
                          const elem = (
                              <Channel
+                                 key={channel.channel_id}
                                  connected={peer.connected}
                                  peerId={peer.id}
                                  channelId={channel.channel_id}
