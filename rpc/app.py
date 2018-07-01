@@ -18,5 +18,8 @@ def route():
     except ConnectionRefusedError as cr:
         print('Got ConnectionRefusedError; is lightningd running? {}'.format(cr)) # TODO: include socket path..
         return jsonify({'status': 'failure', 'detail': 'Connection to lightningd unsuccessful.'})
+    except ValueError as ve:
+        # pylightning exceptions
+        return jsonify({'status': 'failure', 'detail': ve.args[0]})
     print('[app.py] {} returning with data {}'.format(method_name, response))
     return jsonify(response)
