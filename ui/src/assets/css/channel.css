@@ -65,13 +65,14 @@
     line-height: 20px;
     text-transform: uppercase;
     border-radius: 2px;
-    background-color: #7ed321;
+    background-color: red;
     margin: auto;
     font-size: 8px;
     font-weight: 600;
     letter-spacing: 0.3px;
     text-align: center;
-    color: #ffffff;
+    color: white;
+    font-weight: bold;
 }
 
 .channel-balance {
@@ -108,4 +109,13 @@
 
 .CHANNELD_AWAITING_LOCKIN {
     background-color: yellow;
+}
+
+.OPENINGD {
+    background-color: yellow;
+}
+
+.CHANNELD_NORMAL {
+    background-color: #7ed321;
+
 }
