@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Channel from './Channel';
+import Payment from './Payment';
 
 import '../assets/css/homepage.css';
 
@@ -12,12 +13,6 @@ class Homepage extends Component {
                 <div className="title-container">
                     <div className="title-tab selected-title-tab">
                         My channels
-                    </div>
-                    <div className="title-tab">
-                        Transaction history
-                    </div>
-                    <div className="title-tab">
-                        My bitcoin address
                     </div>
                     <div
                         className="pay-invoice-btn"
@@ -76,6 +71,23 @@ class Homepage extends Component {
                         )
                     })}
                 </table>
+
+
+                <div className="title-container">
+                    <div className="title-tab selected-title-tab">
+                        Payments
+                    </div>
+                </div>
+                {payments.map((payment) =>
+                    <Payment
+                        key={payment.id}
+                        paymentId={payment.id}
+                        value={payment.msatoshi}
+                        hash={payment.payment_hash}
+                        timestamp={payment.timestamp}
+                        status={payment.status}
+                    />
+                )}
 
                 <p>Connected to Network: {this.props.network}</p>
             </div>

@@ -1,0 +1,120 @@
+.payment-wrapper {
+    float: left;
+    width: 100%;
+    background: white;
+    margin: 8px 0;
+    height: 60px;
+    border-radius: 2.4px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.03);
+}
+
+.payment-img {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 15px 12px;
+}
+
+.payment-description {
+    width: calc(100% - 444px);
+    float: left;
+    height: 100%;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.payment-name {
+    margin-top: 15px;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    color: #121212;
+}
+
+.payment-time {
+    font-size: 10px;
+    color: #121212;
+    margin-top: 5px;
+}
+
+.payment-time span {
+    opacity: 0.5;
+    font-family: ProximaNova;
+    font-size: 10px;
+    color: #121212;
+}
+
+.payment-state {
+    width: 70px;
+    float: left;
+    height: calc(100% - 7px);
+    padding-top: 7px;
+}
+
+.payment-state span {
+    width: 100%;
+    opacity: 0.5;
+    font-family: Roboto;
+    font-size: 8px;
+    color: #121212;
+}
+
+.payment-btn {
+    width: 70px;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    background-color: red;
+    margin: auto;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.payment-balance {
+    width: 310px;
+    float: left;
+    height: 100%;
+    text-align: right;
+}
+
+.payment-balance span {
+    width: 19px;
+    opacity: 0.5;
+    font-size: 10px;
+    letter-spacing: 0.1px;
+    color: #323c47;
+    margin-left: 5px;
+}
+
+.payment-btc {
+    float: left;
+    width: calc(100% - 10px);
+    margin-top: 13px;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    color: #4da1ff;
+}
+
+.payment-usd {
+    float: left;
+    width: calc(100% - 10px);
+    font-size: 10px;
+    color: #323c47;
+}
+
+.CHANNELD_AWAITING_LOCKIN {
+    background-color: yellow;
+}
+
+.OPENINGD {
+    background-color: yellow;
+}
+
+.CHANNELD_NORMAL {
+    background-color: #7ed321;
+}
