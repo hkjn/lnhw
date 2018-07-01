@@ -32,7 +32,7 @@ class Channel extends Component {
                 </div>
                 <div className="channel-balance">
                     <div className="balance-btc">
-                            {Number(balance).toFixed(6)}
+                            {balance}
                         <span>{curr}</span>
                     </div>
                     <div className="balance-usd">
