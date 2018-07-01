@@ -41,6 +41,11 @@
     border: 1px solid black;
 }
 
+.input-label textarea {
+    margin-left: 10px;
+    border: 1px solid black;
+}
+
 .input-btn {
     margin: 20px auto;
 }
