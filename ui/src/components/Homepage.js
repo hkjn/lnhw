@@ -59,7 +59,7 @@ class Homepage extends Component {
                         <th>Unix Timestamp</th>
                         <th>Status</th>
                     </tr>
-                    {payments.map((payment) => {
+                    {return payments.map((payment) => {
                         return (
                             <tr key={payment.id}>
                                 <td>{payment.id}</td>
