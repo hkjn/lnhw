@@ -43,6 +43,7 @@ class Homepage extends Component {
                                  peerId={peer.id}
                                  channelId={channel.channel_id}
                                  funds={channel.msatoshi_total - channel.msatoshi_to_us}
+                                 channelState={channel.state}
 
                              />
                          )
