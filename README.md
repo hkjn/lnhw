@@ -10,7 +10,9 @@ for an overview of the concept and our prototype.
 ## Current status
 
 This is a *early prototype* demonstrating how a LN hardware wallet might be constructed. We hope to continue
-developing the project into a toolkit to make it easier for anyone to build their own hardware wallet.
+developing the project into a toolkit to make it easier for anyone to build their own hardware wallet. We
+would not recommend anyone try to build a wallet or run the UI based on the current code, especially
+for real funds. Watch this space for updates.
 
 ## Related projects
 
