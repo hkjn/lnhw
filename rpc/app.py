@@ -11,8 +11,6 @@ def route():
     args = request.json.get('args', {})
     method_name = request.json['method']
     method = getattr(rpc, method_name)
-    print(method_name)
-    print(args)
     if not method:
         raise BadRequest('Method "%s" does not exist')
     try:
@@ -24,4 +22,6 @@ def route():
         # pylightning exceptions
         return jsonify({'status': 'failure', 'detail': ve.args[0]})
     print('[app.py] {} returning with data {}'.format(method_name, response))
+    print(method_name)
+    print(args)
     return jsonify(response)
