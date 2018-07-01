@@ -5,7 +5,7 @@ import '../assets/css/channel.css';
 
 class Channel extends Component {
     render() {
-        const btcValue = this.props.funds / 0.00000001;
+        const btcValue = this.props.funds * 0.00000001;
         const usValue = btcValue * 6353.44;
 
         return (
