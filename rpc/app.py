@@ -13,5 +13,10 @@ def route():
     method = getattr(rpc, method_name)
     if not method:
         raise BadRequest('Method "%s" does not exist')
-    response = method(**args)
+    try:
+        response = method(**args)
+    except ConnectionRefusedError as cr:
+        print('Got ConnectionRefusedError; is lightningd running? {}'.format(cr)) # TODO: include socket path..
+        return jsonify({'status': 'failure', 'detail': 'Connection to lightningd unsuccessful.'})
+    print('[app.py] {} returning with data {}'.format(method_name, response))
     return jsonify(response)
