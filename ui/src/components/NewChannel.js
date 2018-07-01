@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fundChannel } from '../services/api';
+import { fundChannel, connect } from '../services/api';
 
 import '../assets/css/new-channel.css';
 
@@ -21,7 +21,12 @@ class PlugWallet extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fundChannel(this.state.address, this.state.amount)
+
+        const _this = this;
+
+        connect(this.state.address).then(() => {
+            const pubKey = _this.state.address.split("@")[0];
+            fundChannel(pubKey, this.state.amount)
             .then(r => {
                 if (r.data.status === 'failure') {
                     alert(r.data.detail)
@@ -30,6 +35,8 @@ class PlugWallet extends Component {
                     window.location.reload()
                 }
             })
+        })
+
     }
 
     render() {
@@ -47,15 +54,15 @@ class PlugWallet extends Component {
                     <div className="form-nc-title">Create a lightning channel</div>
                     <form onSubmit={this.handleSubmit}>
                         <label className="input-label">
-                            Node ID:
-                            <input
+                            Node Id (publickey@host:port)
+                            <textarea
                                 type="text"
                                 value={this.state.address}
                                 onChange={(evt) => this.handleChange(evt, 'address')}
                             />
                         </label>
                         <label className="input-label">
-                            Amount (SAT):
+                            Amount (SAT)
                             <input
                                 type="number"
                                 value={this.state.amout}
