@@ -60,7 +60,7 @@
 }
 
 .state-btn {
-    width: 55px;
+    width: 70px;
     height: 20px;
     line-height: 20px;
     text-transform: uppercase;
@@ -117,5 +117,4 @@
 
 .CHANNELD_NORMAL {
     background-color: #7ed321;
-
 }
