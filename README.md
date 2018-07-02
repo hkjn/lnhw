@@ -2,7 +2,7 @@
 
 [Chainlab 2018 hackathon](https://blockchain-hackathon.com/) project for a LN hardware wallet.
 
-See the [slides](https://docs.google.com/presentation/d/1auMkeH4-uBJjnyafRW3F2P4WcIsboGVw0LqeNuW-iIM/) we presented
+See the [slides](chainhack-slides.pdf) we presented
 for an overview of the concept and our prototype.
 
 ![lnhw team](team.jpg)
