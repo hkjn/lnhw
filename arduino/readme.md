@@ -12,9 +12,9 @@ Ideally this work can be a first move towards standartisation of the communicati
 
 Arduino hardware wallet can be splitted into several parts:
 
-- secrets generation and derivation
-- secrets storage (SD card or secure storage)
-- user interface (OLED display + buttons / TFT screen with touchscreen)
-- communication protocol and interfaces (Serial / Bluetooth / TCP-IP)
+- [secrets generation and derivation](./secrets/)
+- [secrets storage](./storage/) (SD card or secure storage)
+- [user interface](./ui/) (OLED display + buttons / TFT screen with touchscreen)
+- [communication](./communication/) protocol and interfaces (Serial / Bluetooth / TCP-IP)
 
 Every part is more or less independent and can be developed and tested separately. Code for different functional parts is stored in separate folders and will be assembled later for a few demo use-cases.
