@@ -16,9 +16,9 @@ Buttons pinout:
 
 Suggested actions:
 
-- **Button A**: Cancel operation
+- **Button A**: Confirm operation
 - **Button B**: More information (scroll to the next string/line)
-- **Button C**: Confirm operation
+- **Button C**: Cancel operation
 
 ## TFT screen with touchscreen
 

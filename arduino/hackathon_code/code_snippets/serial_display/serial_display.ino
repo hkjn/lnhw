@@ -14,10 +14,10 @@ void show(char * msg){
 
 bool userConfirmed(){
     bool confirm = digitalRead(5);
-    bool not_confirm = digitalRead(6);
+    bool not_confirm = digitalRead(9);
     while((confirm && not_confirm)){
       confirm = digitalRead(5);
-      not_confirm = digitalRead(6);
+      not_confirm = digitalRead(9);
     }
     if(confirm){
       show("Ok, confirmed");
@@ -30,8 +30,9 @@ bool userConfirmed(){
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(5, INPUT_PULLUP);
+  pinMode(9, INPUT_PULLUP);
   pinMode(6, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
   Serial.begin(9600);
   oled.init();
   oled.setBatteryVisible(false);
