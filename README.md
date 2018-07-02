@@ -5,9 +5,11 @@
 See the [slides](https://docs.google.com/presentation/d/1auMkeH4-uBJjnyafRW3F2P4WcIsboGVw0LqeNuW-iIM/) we presented
 for an overview of the concept and our prototype.
 
-![Chainhack 2018 logo](https://blockchain-hackathon.com/assets/img/logo_hack_600.png)
+![lnhw team](team.jpg)
 
 ## Current status
+
+![Chainhack 2018 logo](https://blockchain-hackathon.com/assets/img/logo_hack_600.png)
 
 This is a *early prototype* demonstrating how a LN hardware wallet might be constructed. We hope to continue
 developing the project into a toolkit to make it easier for anyone to build their own hardware wallet. We
