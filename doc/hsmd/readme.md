@@ -13,6 +13,22 @@ C-lightning uses a multi-process architecture where several processes communicat
 
 All these deamons can talk to `hsmd` and ask for signatures, public keys and everything else required for their operation. We need to replace original `hsmd` with our custom one that talks to the hardware wallet.
 
+# Key derivation
+
+In c-lightning everything is derived from the same secret - `hsm_secret`. Schematic diagram of the key derivation is shown below:
+
+![Key derivation diagram](keys_derivation.png)
+
+Here `HKDF` is a [key derivation function](https://en.wikipedia.org/wiki/HKDF) that takes  secret and a few other fields as inputs and generates a random-looking sequence of bytes that can be used as HD private key, encryption key for communication, HTLC and so on.
+
+Three types of keys are used in `c-lightning`: 
+
+- `bip-32 key` is used for all on-chain transactions (funding, withdrawal, ...)
+- `node key` defines public key of our node and is used for communication and signing invoices
+- `peer seed`s are used to generate all kinds of channel secrets. All channels have the same base secret, but every per-channel secret is also derived from the base by applying HKDF.
+
+We don't care about the `node key` as it doesn't control any funds, but we DO care about `bip-32 key` and `peer seed`. Unfortunately, all channel secrets are derived from `peer seed` during channel opening and stored in the database without asking `hsmd` further. This is a direct leak of the secrets from the `hsmd` and the `c-lightning` team [is aware of it](https://lists.ozlabs.org/pipermail/c-lightning/2018-May/000050.html). So I hope it will be fixed soon and we can help with it.
+
 # `hsmd` daemon
 
 We only touch `hsmd/hsm.c`. We don't want to do anything with other files as they only define interface between deamons.
