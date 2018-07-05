@@ -57,3 +57,11 @@ turned out not to be fully feasible within the roughly two days for the Hackatho
 
 There's some notes by @stepansnigirev at [doc/hsmd/readme.md](doc/hsmd/readme.md) that outlines
 the structure of c-lightning.
+
+### `hardware` notes
+
+We used [Adafruit Feather M0 with SD card slot](https://www.adafruit.com/product/2796) and an [OLED FeatherWing](https://www.adafruit.com/product/2900). SD card can be used for encrypted data storage and OLED extension board has 3 buttons for user interaction.
+
+Currently we are refactoring code of the hardware part, status and architecture description can be found in the [arduino](arduino/) folder.
+
+Yes, we know that Arduino is not secure at all, and one should never use these boards for real funds, but we also plan to develop a security-oriented Arduino-compatible board such that anyone could use them with any crazy extension boards to make their own lightning- and bitcoin-powered device. Stay tuned!
