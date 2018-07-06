@@ -18,3 +18,17 @@ Arduino hardware wallet can be splitted into several parts:
 - [communication](./communication/) protocol and interfaces (Serial / Bluetooth / TCP-IP)
 
 Every part is more or less independent and can be developed and tested separately. Code for different functional parts is stored in separate folders and will be assembled later for a few demo use-cases.
+
+# Boards
+
+Not any Arduino board will work. The sketch will require some significant amount of space, memory and uses 64-bit unsigned integers that only 32-bit microcontrollers support.
+
+In general any 32-bit microcontroller will work. But to be more specific here is a list:
+
+- [Genuino Zero](https://store.arduino.cc/genuino-zero)
+- [Arduino Due](https://store.arduino.cc/arduino-due)
+- [Arduino M0 family](https://store.arduino.cc/arduino-m0)
+- [Arduino MKR family](https://store.arduino.cc/homepage/arduino-mkrfox1200)
+- [Adafruit M0 family](https://www.adafruit.com/product/2796)
+
+There are also faster boards based on ARM Cortex M3, M4 and ESP32. They should work, but I would recommend to start with M0. I tried them and they are a bit harder to work with. As soon as we test our firmware on M0 we can start moving to faster MCU.
