@@ -21,7 +21,7 @@ Every part is more or less independent and can be developed and tested separatel
 
 # Boards
 
-Not any Arduino board will work. The sketch will require some significant amount of space, memory and uses 64-bit unsigned integers that only 32-bit microcontrollers support.
+Not every Arduino board will work with our project. The sketch requires some significant amount of space, memory and uses 64-bit unsigned integers for amounts that only 32-bit microcontrollers support.
 
 In general any 32-bit microcontroller will work. But to be more specific here is a list:
 
@@ -32,3 +32,5 @@ In general any 32-bit microcontroller will work. But to be more specific here is
 - [Adafruit M0 family](https://www.adafruit.com/product/2796)
 
 There are also faster boards based on ARM Cortex M3, M4 and ESP32. They should work, but I would recommend to start with M0. I tried them and they are a bit harder to work with. As soon as we test our firmware on M0 we can start moving to faster MCU.
+
+If you don't have a soldering station or you just don't want to solder anything, I would recommend to look very carefully at what you are buying. Arduino don't require soldering, but Adafruit does. And to be able to plug in the OLED screen you should also buy [the headers](https://www.adafruit.com/product/2886).
