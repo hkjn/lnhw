@@ -50,7 +50,8 @@ $ # if the lsusb output was like 'Bus 002 Device 003: ID 03eb:2111 Atmel Inc.', 
 $ # 'idVendor' value would be '03eb', and 'idProduct' would be '2111'.. now create a new
 $ # udev rule under the appropriate directory, usually /etc/udev/rules.d:
 $ sudo nano /etc/udev/rules.d/50-arduino.rules
-$ # edit a rule like the following in the edit that opens, updating idVendor, idProduct and possibly other fields as necessary:
+$ # add a rule like the following in the editor that opens, updating idVendor, idProduct and
+$ # possibly other fields as necessary:
 $ # SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", MODE="0660", TAG+="uaccess", TAG+="udev-acl"
 $ # now you can reload the udev rules:
 $ sudo udevadm control --reload-rules && udevadm trigger
