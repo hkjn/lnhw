@@ -33,7 +33,7 @@ for real funds. Watch this space for updates.
 
 ## Architecture
 
-Since we had [13 team members](doc/team.md) for the hackathon, we split up into three groups based on
+Since we had [13 team members](doc/team/readme.md) for the hackathon, we split up into three groups based on
 background and interests to attempt to parallelize the work, to focus on three different conceptual
 layers of the prototype we built. This worked reasonably well, although in hindsight we should have
 taken more shortcuts and tried to integrate the work of the different groups much earlier!
