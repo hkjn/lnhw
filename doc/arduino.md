@@ -6,6 +6,8 @@
 - Clone [arduino-lightning library](https://github.com/arduino-bitcoin/arduino-lightning)
 - Install libraries ([instruction](https://www.arduino.cc/en/guide/libraries))
 
+**Be careful with the board, don't put it on metalic surfaces**. It has electrical contacts on the bottom and if you short them your board may die.
+
 ## Debugging permission issues with serial device
 
 We found that there's frequently steps that need to be taken to allow a non-privileged user to read and write

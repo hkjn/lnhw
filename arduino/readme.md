@@ -19,6 +19,8 @@ Arduino hardware wallet can be splitted into several parts:
 
 Every part is more or less independent and can be developed and tested separately. Code for different functional parts is stored in separate folders and will be assembled later for a few demo use-cases.
 
+Assembled sketch with current functionality is in the [hsm/hardware_wallet](./hsm/hardware_wallet/) folder.
+
 # Boards
 
 Not every Arduino board will work with our project. The sketch requires some significant amount of space, memory and uses 64-bit unsigned integers for amounts that only 32-bit microcontrollers support.
