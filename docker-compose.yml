@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+
+  ui:
+    container_name: lnhw-ui
+    build:
+      context: .
+      dockerfile: ./ui/Dockerfile
+    volumes:
+      - '.:/usr/src/ui'
+      - '/usr/src/ui/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
