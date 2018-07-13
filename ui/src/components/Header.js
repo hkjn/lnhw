@@ -3,15 +3,17 @@ import HomeIcon from '../assets/img/home-icon.svg';
 import DeviceIcon from '../assets/img/chip.svg';
 import LnIcon from '../assets/img/shape.svg';
 
-import { convertMSatToObv } from '../services/helper.js';
+import { convertMSatToObv, convertSatToObv } from '../services/helper.js';
 
 import '../assets/css/header.css';
 
 
 class Header extends Component {
     render() {
-        const { value, curr } = convertMSatToObv(this.props.userFunds || 0);
-        const _balance = value ? value : '-';
+        const onChain = convertSatToObv(this.props.userCoins || 0);
+        const _onChain = onChain.value ? onChain.value : '-';
+        const offChain = convertMSatToObv(this.props.userFunds || 0);
+        const _offChain = offChain.value ? offChain.value : '-';
         const connected = this.props.connected;
         const network = this.props.network;
 
@@ -38,8 +40,10 @@ class Header extends Component {
                 </div>
                 <div className="header-balance" >
                     <div className="balance-container">
-                        <span>Balance</span>
-                        <label><img src={LnIcon} alt="ln"/> {_balance} {curr}</label>
+                        <span>LN Balance</span>
+                        <label><img src={LnIcon} alt="ln"/> {_offChain} {offChain.curr}</label>
+                        <span>On Chain Balance</span>
+                        <label>{_onChain} {onChain.curr}</label>
                     </div>
                 </div>
             </header>

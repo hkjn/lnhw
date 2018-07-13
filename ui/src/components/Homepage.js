@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import OnChain from './OnChain';
 import Channel from './Channel';
 import Payment from './Payment';
 
@@ -7,9 +8,44 @@ import '../assets/css/homepage.css';
 class Homepage extends Component {
     render() {
         const peers = this.props.peers || [];
+        const outputs= this.props.outputs || [];
         const payments = this.props.payments || [];
         return (
             <div id="homepage-wrapper">
+                <div className="title-container">
+                    <div className="title-tab selected-title-tab">
+                        On-Chain Funds
+                    </div>
+                    <div
+                        className="pay-invoice-btn"
+                        onClick={() => this.props.handleToggleNewAddress()}
+                    >
+                        New Address
+                    </div>
+                    <div
+                        className="new-channel-btn"
+                        onClick={() => this.props.handleToggleWithdraw()}
+                    >
+                        Withdraw
+                    </div>
+                </div>
+                {outputs.map((output) => {
+                    let onchainHtml = [];
+                    const elem = (
+                        <OnChain
+                            address={output.address}
+                            txId={output.txid}
+                            value={output.value}
+                            txState={output.status}
+
+                        />
+                    )
+
+                    onchainHtml = [...onchainHtml, elem];
+
+                    return onchainHtml;
+                })}
+
                 <div className="title-container">
                     <div className="title-tab selected-title-tab">
                         My channels

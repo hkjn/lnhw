@@ -8,6 +8,10 @@ export function getInfo () {
     return rpc('getinfo')
 }
 
+export function getNewAddress () {
+    return rpc('newaddr')
+}
+
 export function pay (bolt11) {
     return rpc('pay', { bolt11 })
 }
@@ -35,6 +39,13 @@ export function listInvoices() {
 export function fundChannel(channelId, satoshi) {
     return rpc('fundchannel', {
         channel_id: channelId,
+        satoshi
+    })
+}
+
+export function withdraw(address, satoshi) {
+    return rpc('withdraw', {
+        destination: address,
         satoshi
     })
 }
