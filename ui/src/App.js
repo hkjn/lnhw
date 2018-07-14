@@ -7,6 +7,8 @@ import { getInfo, listPeers, listFunds, listPayments, listInvoices } from './ser
 
 import PlugWallet from './components/PlugWallet.js';
 import PayInvoice from './components/PayInvoice.js';
+import NewAddress from './components/NewAddress.js';
+import Withdraw from './components/Withdraw.js';
 
 import './App.css';
 
@@ -24,22 +26,38 @@ const calcUserLnFundsBasedOnPeers = (peers = []) => {
     return funds;
 }
 
+const calcUserOnChainFundsBasedOnOutputs = (outputs = []) => {
+    let coins = 0;
+
+    const pArr = outputs.length ? outputs : [];
+
+    pArr.map((output) => {
+        return coins += output.value;
+    })
+
+    return coins;
+}
+
+
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.setMainState = this.setMainState.bind(this);
+        this.handleToggleWithdraw = this.handleToggleWithdraw.bind(this);
+        this.handleToggleNewAddress = this.handleToggleNewAddress.bind(this);
         this.handleToggleNewChannel = this.handleToggleNewChannel.bind(this);
         this.handleTogglePayInvoice = this.handleTogglePayInvoice.bind(this);
 
         this.state = {
             //  Warning: do not remove this one
+            openNewAddress: false,
             openNewChannel: false,
             openPayInvoice: false,
 
             info: {},
             peers: {},
-            funds: {},
+            outputs: {},
             payments: [],
             invoices: {},
         };
@@ -56,7 +74,7 @@ class App extends Component {
             })
         listFunds()
             .then(res => {
-                this.setState({ funds: res.data })
+                this.setState({ outputs: res.data.outputs })
             })
         listPayments()
             .then(res => {
@@ -70,6 +88,14 @@ class App extends Component {
 
     setMainState(state) {
         this.setState({ info: state });
+    }
+
+    handleToggleWithdraw() {
+        this.setState({ openWithdraw: !this.state.openWithdraw });
+    }
+
+    handleToggleNewAddress() {
+        this.setState({ openNewAddress: !this.state.openNewAddress });
     }
 
     handleToggleNewChannel() {
@@ -89,6 +115,9 @@ class App extends Component {
         // const connected = this.state.info.hardwarewallet === 'connected';
 
         const userFunds = calcUserLnFundsBasedOnPeers(this.state.peers);
+        const userCoins = calcUserOnChainFundsBasedOnOutputs(this.state.outputs);
+        console.log("User coins:", userCoins);
+        console.log("User funds:", userFunds);
 
         return (
             <div className="App">
@@ -96,16 +125,24 @@ class App extends Component {
                     connected={connected}
                     network={this.state.info.network}
                     userFunds={userFunds}
+                    userCoins={userCoins}
                 />
                 <Homepage
                     payments={this.state.payments}
+                    handleToggleWithdraw={this.handleToggleWithdraw}
+                    handleToggleNewAddress={this.handleToggleNewAddress}
                     handleToggleNewChannel={this.handleToggleNewChannel}
                     handleTogglePayInvoice={this.handleTogglePayInvoice}
                     peers={this.state.peers.length ? this.state.peers : []}
+                    outputs={this.state.outputs.length ? this.state.outputs : []}
                 />
                 <PlugWallet
                     connected={connected}
                     setMainState={this.setMainState}
+                />
+                <Withdraw
+                    openWithdraw={this.state.openWithdraw}
+                    handleToggleWithdraw={this.handleToggleWithdraw}
                 />
                 <NewChannel
                     openNewChannel={this.state.openNewChannel}
@@ -114,6 +151,10 @@ class App extends Component {
                 <PayInvoice
                     openPayInvoice={this.state.openPayInvoice}
                     handleTogglePayInvoice={this.handleTogglePayInvoice}
+                />
+                <NewAddress
+                    openNewAddress={this.state.openNewAddress}
+                    handleToggleNewAddress={this.handleToggleNewAddress}
                 />
             </div>
         );

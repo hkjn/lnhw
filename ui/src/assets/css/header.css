@@ -26,13 +26,13 @@ header {
 }
 
 .header-balance {
-    float: left;
+    float: right;
     width: 150px;
     height: 100%;
 }
 
 .balance-container {
-    padding: 22px 30px;
+    padding: 5px 20px;
     text-align: right;
     color: #323c47;
 }

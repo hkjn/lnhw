@@ -35,3 +35,24 @@ export function convertMSatToObv(mSat) {
         curr: 'BTC'
     };
 }
+
+export function convertSatToObv(sat) {
+    console.log("sat = " + sat);
+
+    const btc = sat / 10**8;
+    console.log("btc = " + btc);
+
+    if (btc < 0.005) {
+        console.log("mBTC = " + btc * 1000);
+
+        return {
+            value: Number(btc * 1000).toFixed(4),
+            curr: 'mBTC'
+        };
+    }
+
+    return {
+        value: Number(btc).toFixed(5),
+        curr: 'BTC'
+    };
+}
