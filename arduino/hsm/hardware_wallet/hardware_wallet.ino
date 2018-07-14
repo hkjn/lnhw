@@ -8,7 +8,14 @@
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_FeatherOLED.h>
 
+// SD card libs
+#include <SPI.h>
+#include <SD.h>
+
 Adafruit_FeatherOLED oled = Adafruit_FeatherOLED();
+
+char hsm_file[] = "hsm.bin";
+byte hsm_secret[32] = { 0 };
 
 // cleans the display and shows message on the screen
 void show(char * msg, bool done=true){
@@ -20,22 +27,31 @@ void show(char * msg, bool done=true){
   }
 }
 
+void show(String msg, bool done=true){
+  oled.clearDisplay();
+  oled.setCursor(0,0);
+  oled.println(msg);
+  if(done){
+    oled.display();
+  }
+}
+
 // waits for user to press a button
 bool userConfirmed(){
-    bool confirm = digitalRead(5);
-    bool not_confirm = digitalRead(9);
-    // if none of the buttons is pressed
-    while((confirm && not_confirm)){
-      confirm = digitalRead(5);
-      not_confirm = digitalRead(9);
-    }
-    if(confirm){
-      show("Ok, confirmed");
-      return true;
-    }else{
-      show("Cancelled");
-      return false;
-    }
+  bool confirm = digitalRead(5);
+  bool not_confirm = digitalRead(9);
+  // if none of the buttons is pressed
+  while((confirm && not_confirm)){
+    confirm = digitalRead(5);
+    not_confirm = digitalRead(9);
+  }
+  if(confirm){
+    show("Ok, confirmed");
+    return true;
+  }else{
+    show("Cancelled");
+    return false;
+  }
 }
 
 void setup() {
@@ -124,9 +140,71 @@ void sign_funding_tx(char * cmd){
   }
 }
 
+void load_hsm(){
+  if (!SD.begin(4)){
+    Serial.println("error: no SD card");
+    return;
+  }
+
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+  File myFile = SD.open(hsm_file);
+  if(myFile){
+    int cursor = 0;
+    // read from the file until there's nothing else in it:
+    while(myFile.available() && cursor < sizeof(hsm_secret)) {
+      hsm_secret[cursor] = myFile.read();
+      cursor ++;
+    }
+    myFile.close();
+    if(cursor != 32){
+      Serial.println("error: hsm secret should be 32 bytes");
+      return;
+    }
+    Serial.println("success: hsm secret loaded");
+    show(toHex(hsm_secret, 32));
+    // close the file:
+  } else {
+    Serial.println("error: hsm.bin file is missing");
+  }
+}
+
+void save_hsm(char * cmd){
+  if (!SD.begin(4)){
+    Serial.println("error: no SD card");
+    return;
+  }
+
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+  File myFile = SD.open(hsm_file, FILE_WRITE);
+  if(myFile){
+    if(strlen(cmd) < 64){
+      Serial.println(strlen(cmd));
+      Serial.println("error: hsm secret should be 32 bytes");
+      return;
+    }
+    fromHex(cmd, 64, hsm_secret, 32);
+    myFile.write(hsm_secret, 32);
+    myFile.close();
+    Serial.println("success: hsm file written");
+    show(toHex(hsm_secret, 32));
+  } else {
+    Serial.println("error: cant write to file");
+  }
+}
+
 void parseCommand(char * cmd){
   if(memcmp(cmd, "sign_funding_tx", strlen("sign_funding_tx"))==0){
     sign_funding_tx(cmd + strlen("sign_funding_tx") + 1);
+    return;
+  }
+  if(memcmp(cmd, "load_hsm", strlen("load_hsm"))==0){
+    load_hsm();
+    return;
+  }
+  if(memcmp(cmd, "save_hsm", strlen("save_hsm"))==0){
+    save_hsm(cmd + strlen("save_hsm") + 1);
     return;
   }
   unknownCommand(cmd);
