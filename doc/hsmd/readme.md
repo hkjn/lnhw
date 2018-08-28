@@ -1,17 +1,17 @@
-# Internal structure of HSM deamon
+# Internal structure of HSM daemon
 
 # Top-level design
 
-C-lightning uses a multi-process architecture where several processes communicate with each other and incapsulate certain functionality of the program. There is a master deamon `lightningd` that holds all high-level logic and also takes care of communication to other nodes. It spawns severa child processes:
+C-lightning uses a multi-process architecture where several processes communicate with each other and encapsulate certain functionality of the program. There is a master daemon `lightningd` that holds all high-level logic and also takes care of communication to other nodes. It spawns several child processes:
 
-- `hsmd` that we are interseted in, it handles all the secrets and signs whatever needs to be signed
+- `hsmd` that we are interested in, it handles all the secrets and signs whatever needs to be signed
 - `gossipd` - used to find out about other nodes and their channels to find routes for payments
-- `onchaind` - manages on-chain funds (normal, non-lightning ballance)
+- `onchaind` - manages on-chain funds (normal, non-lightning balance)
 - `openingd` - opens channels
 - `channeld` - takes care of channel management, channel updates, announcements, hopes and so on
 - `closingd` - closes channels
 
-All these deamons can talk to `hsmd` and ask for signatures, public keys and everything else required for their operation. We need to replace original `hsmd` with our custom one that talks to the hardware wallet.
+All these daemons can talk to `hsmd` and ask for signatures, public keys and everything else required for their operation. We need to replace original `hsmd` with our custom one that talks to the hardware wallet.
 
 # Key derivation
 
@@ -19,7 +19,7 @@ In c-lightning everything is derived from the same secret - `hsm_secret`. Schema
 
 ![Key derivation diagram](keys_derivation.png)
 
-Here `HKDF` is a [key derivation function](https://en.wikipedia.org/wiki/HKDF) that takes  secret and a few other fields as inputs and generates a random-looking sequence of bytes that can be used as HD private key, encryption key for communication, HTLC and so on.
+Here `HKDF` is a [key derivation function](https://en.wikipedia.org/wiki/HKDF) that takes a secret and a few other fields as inputs and generates a random-looking sequence of bytes that can be used as HD private key, encryption key for communication, HTLC and so on.
 
 Three types of keys are used in `c-lightning`: 
 
@@ -31,13 +31,13 @@ We don't care about the `node key` as it doesn't control any funds, but we DO ca
 
 # `hsmd` daemon
 
-We only touch `hsmd/hsm.c`. We don't want to do anything with other files as they only define interface between deamons.
+We only touch `hsmd/hsm.c`. We don't want to do anything with other files as they only define interface between daemons.
 
 ## `init_hsm()` 
 
 ### `maybe_create_new_hsm()`
 
-When `hsmd` deamon start it first checks if there is a `hsm_secret` file in `~/.lightning/` folder, and if not - generates a new random sequence of bytes and saves it into that file. We want to replace it with asking the hardware if it has a secret and generating a new secret if necessary. This action will require user confirmation on the hardware device (*"Do you want to pair the devices?"*). We also should consider replacing a random 32-byte number with a 12-24 word seed that can be backed up by the human. It's just better in sense of UX.
+When `hsmd` daemon starts, it first checks if there is an `hsm_secret` file in `~/.lightning/` folder, and if not - it generates a new random sequence of bytes and saves it into that file. We want to replace it with asking the hardware if it has a secret and generating a new secret if necessary. This action will require user confirmation on the hardware device (*"Do you want to pair the devices?"*). We also should consider replacing a random 32-byte number with a 12-24 word seed that can be backed up by the human. It's just better in sense of UX.
 
 ### `load_hsm()`
 
@@ -47,7 +47,7 @@ Then `hsmd` loads content of the `hsm_secret` file (that is just a 32-byte array
 
 Key derivation works as follows:
 
-- it uses `hsm_secret` to create an [HD wallet](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) by first applying [HKDF](https://en.wikipedia.org/wiki/HKDF) algorithm to it. In particular it uses `hsm_secret` as input key material (data), `0` as salt (increments if fails to create a key) and `"bip32 seed"` string as info field. From this function it gets a new 32-byte secret that it uses as a seed for HD wallet. It derives a child with a path `m/0/0` from this wallet and stores it in `secretstuff.bip32` field.
+- it uses `hsm_secret` to create an [HD wallet](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) by first applying [HKDF](https://en.wikipedia.org/wiki/HKDF) algorithm to it. In particular it uses `hsm_secret` as input key material (data), `0` as salt (increments if it fails to create a key) and `"bip32 seed"` string as info field. From this function it gets a new 32-byte secret that it uses as a seed for HD wallet. It derives a child with a path `m/0/0` from this wallet and stores it in `secretstuff.bip32` field.
 
 Now we have everything necessary in the `secretstuff` structure.
 
@@ -69,11 +69,11 @@ fingerprint: 6896baf1
 
 ## Node key
 
-Our lightning node has a public key and corresponding private key used for communication between nodes. In particular this key pair is used for data encryption and key negotiation. We don't really care about this one as it is used only for communication and it doesn't control our funds. **We can keep this one on the laptop**.
+Our lightning node has a public key and corresponding private key used for communication between nodes. In particular this key pair is used for data encryption and key negotiation. We don't really care about this one as it is only used for communication and it doesn't control our funds. **We can keep this one on the laptop**.
 
 Here we don't even need an HD wallet, so we just do HKDF but instead of `"bip32 seed"` in the info field we use `"nodeid"` string instead. Result will be our private key, public key is as usual `secret * G`.
 
-Public keys in c-lighning are represented as 64-byte arrays holding `x` and `y` coordinates of the public point in little endian byte order.
+Public keys in c-lightning are represented as 64-byte arrays holding `x` and `y` coordinates of the public point in little endian byte order.
 
 Then, if we need to talk to another node, we generate a message, encrypt it with the other node's public key, sign it with our private key and send it. We don't really care how it's done - we can let c-lightning do all this stuff. Signature is a normal `(r,s)` pair in little endian.
 
