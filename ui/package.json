@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.21.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-scripts": "5.0.1"
   },
   "proxy": {
