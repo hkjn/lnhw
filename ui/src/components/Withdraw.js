@@ -22,8 +22,6 @@ class Withdraw extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const _this = this;
-
         withdraw(this.state.address, this.state.amount)
             .then(r => {
                 if (r.data.status === 'failure') {
